@@ -1,17 +1,6 @@
 /* ════════════════════════════════════════════════════════
    STACKLY — BLOG PAGE INTERACTIONS
-   home.js (loaded first) already covers the shared shell:
-   particles, image fallback, mobile menu, back to top,
-   smooth scroll, partner marquee cloning.
-
-   This file adds what's unique to the blog page:
-   - Locks the "Blog" nav link as always-active
-   - Hero counter animation (.bhs-num) with optional abbr format
-   - Blog search + domain filter chips, combined
-   - Empty-state message
-   - Clear-search button visibility
-   - Scroll-reveal (.reveal) for blog-specific elements
-   - Topic tile click → scroll to grid + apply filter
+   (Search now redirects to 404.html – filtering removed)
 ════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -87,52 +76,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ─── SEARCH + FILTER ───
-    var searchInput  = document.getElementById('blogSearchInput');
-    var bsClear      = document.getElementById('bsClear');
-    var filterChips  = document.querySelectorAll('#blogFilters .blog-chip');
-    var blogCards    = document.querySelectorAll('#blogCardsGrid .blog-card');
-    var countPill    = document.getElementById('blogCountPill');
-    var emptyState   = document.getElementById('blogEmpty');
+    // ─── SEARCH CLEAR BUTTON (visual only) ───
+    var searchInput = document.getElementById('blogSearchInput');
+    var bsClear     = document.getElementById('bsClear');
+
+    if (bsClear && searchInput) {
+        searchInput.addEventListener('input', function () {
+            bsClear.classList.toggle('visible', this.value.length > 0);
+        });
+        bsClear.addEventListener('click', function () {
+            searchInput.value = '';
+            searchInput.focus();
+            bsClear.classList.remove('visible');
+        });
+    }
+
+    // ─── TOPIC TILES → scroll to grid + apply filter ───
+    var filterChips = document.querySelectorAll('#blogFilters .blog-chip');
+    var blogCards   = document.querySelectorAll('#blogCardsGrid .blog-card');
+    var countPill   = document.getElementById('blogCountPill');
+    var emptyState  = document.getElementById('blogEmpty');
     var activeFilter = 'all';
 
     function applyFilters() {
-        var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
         var visible = 0;
-
         blogCards.forEach(function (card) {
-            var domain   = card.getAttribute('data-domain') || '';
-            var title    = (card.querySelector('.bc-title')   || {}).textContent || '';
-            var excerpt  = (card.querySelector('.bc-excerpt') || {}).textContent || '';
-            var author   = (card.querySelector('.bc-author')  || {}).textContent || '';
-            var haystack = (title + ' ' + excerpt + ' ' + author + ' ' + domain).toLowerCase();
-
+            var domain = card.getAttribute('data-domain') || '';
             var matchDomain = activeFilter === 'all' || domain === activeFilter;
-            var matchQuery  = !query || haystack.indexOf(query) !== -1;
-
-            if (matchDomain && matchQuery) {
+            if (matchDomain) {
                 card.classList.remove('is-hidden');
                 visible++;
             } else {
                 card.classList.add('is-hidden');
             }
         });
-
         if (countPill) countPill.textContent = visible + (visible === 1 ? ' article' : ' articles');
         if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
-
-        // clear button visibility
-        if (bsClear) bsClear.classList.toggle('visible', query.length > 0);
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener('input', applyFilters);
-    }
-    if (bsClear) {
-        bsClear.addEventListener('click', function () {
-            if (searchInput) { searchInput.value = ''; searchInput.focus(); }
-            applyFilters();
-        });
     }
 
     filterChips.forEach(function (chip) {
@@ -143,22 +122,19 @@ document.addEventListener('DOMContentLoaded', function () {
             applyFilters();
         });
     });
-
     applyFilters();
 
-    // ─── TOPIC TILES → scroll to grid + apply filter ───
+    // ─── TOPIC TILES → scroll to grid + activate filter ───
     var topicTiles = document.querySelectorAll('.topic-tile[data-filter]');
     topicTiles.forEach(function (tile) {
         tile.addEventListener('click', function (e) {
             e.preventDefault();
             var filter = tile.getAttribute('data-filter');
-            // activate matching chip
             filterChips.forEach(function (chip) {
                 if (chip.getAttribute('data-filter') === filter) {
                     chip.click();
                 }
             });
-            // scroll to grid
             var gridSection = document.getElementById('blogGrid');
             if (gridSection) {
                 var offset = 100;
@@ -168,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ─── LOAD MORE BUTTON (stub — shows a toast) ───
+    // ─── LOAD MORE BUTTON ───
     var loadMoreBtn = document.getElementById('blogLoadMore');
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function () {
