@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Stackly — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="dashboardadmin.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html"><img src="logo-removebg-preview.webp" alt="Stackly" class="nav-logo-img"></a>
+    <span class="admin-badge">Admin</span>
+    <button class="sidebar-close" id="sidebarCloseBtn">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Dashboard</div>
+    <a href="#" class="nav-item active" data-page="overview"><i class="ph ph-squares-four"></i><span>Overview</span></a>
+    <a href="#" class="nav-item" data-page="metrics"><i class="ph ph-chart-line-up"></i><span>Metrics</span></a>
+    <a href="#" class="nav-item" data-page="sites"><i class="ph ph-map-trifold"></i><span>Lab Manager</span></a>
+    <a href="#" class="nav-item" data-page="alerts"><i class="ph ph-bell-ringing"></i><span>Reviews</span><span class="badge-pill">5</span></a>
+    <div class="nav-section-label">Management</div>
+    <a href="#" class="nav-item" data-page="users"><i class="ph ph-users"></i><span>Researchers</span></a>
+    <a href="#" class="nav-item" data-page="devices"><i class="ph ph-cpu"></i><span>Instruments</span></a>
+    <a href="#" class="nav-item" data-page="reports"><i class="ph ph-file-text"></i><span>Reports</span></a>
+    <a href="#" class="nav-item" data-page="billing"><i class="ph ph-credit-card"></i><span>Funding</span></a>
+    <div class="nav-section-label">System</div>
+    <a href="#" class="nav-item" data-page="logs"><i class="ph ph-terminal"></i><span>System Logs</span></a>
+    <a href="#" class="nav-item" data-page="settings"><i class="ph ph-gear"></i><span>Settings</span></a>
+  </nav>
+  <div class="sidebar-bottom">
+    <a href="index.html" class="logout-btn"><i class="ph ph-sign-out"></i> Logout</a>
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+    <div class="topbar-title" id="pageTitle">Overview</div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-actions">
+      <button class="topbar-btn" onclick="location.href='404.html'"><i class="ph ph-bell"></i></button>
+      <button class="topbar-btn" onclick="location.href='404.html'"><i class="ph ph-magnifying-glass"></i></button>
+      <button class="topbar-btn" onclick="location.href='404.html'"><i class="ph ph-plus-circle"></i></button>
+    </div>
+    <div class="user-profile">
+      <div class="user-avatar" id="userAvatar">A</div>
+      <div class="user-info-text">
+        <div class="user-name" id="userName">Admin</div>
+        <div class="user-email" id="userEmail">admin@stackly.org</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="main-content">
+  <!-- OVERVIEW -->
+  <div class="page active" id="page-overview">
+    <div class="user-greeting"><div><h2 id="greetName">Hello, Admin!</h2><p id="greetEmail">admin@stackly.org · Administrator</p></div><div class="greeting-badges"><div class="greeting-badge green"><i class="ph ph-activity"></i> All Labs Operational</div><div class="greeting-badge amber"><i class="ph ph-warning"></i> 5 Pending Reviews</div></div></div>
+    <div class="metrics-grid">
+      <div class="metric-card blue"><div class="metric-icon"><i class="ph ph-flask"></i></div><div class="metric-info"><div class="metric-val" id="mStudies">—</div><div class="metric-lbl">Active Studies</div><div class="metric-delta up"><i class="ph ph-trend-up"></i> +3</div></div></div>
+      <div class="metric-card green"><div class="metric-icon"><i class="ph ph-file-text"></i></div><div class="metric-info"><div class="metric-val">142</div><div class="metric-lbl">Total Publications</div><div class="metric-delta up"><i class="ph ph-trend-up"></i> +12%</div></div></div>
+      <div class="metric-card teal"><div class="metric-icon"><i class="ph ph-buildings"></i></div><div class="metric-info"><div class="metric-val">42</div><div class="metric-lbl">Research Labs</div><div class="metric-delta neutral"><i class="ph ph-minus"></i> Stable</div></div></div>
+      <div class="metric-card amber"><div class="metric-icon"><i class="ph ph-bell-ringing"></i></div><div class="metric-info"><div class="metric-val">5</div><div class="metric-lbl">Pending Reviews</div><div class="metric-delta down"><i class="ph ph-trend-down"></i> -2</div></div></div>
+      <div class="metric-card purple"><div class="metric-icon"><i class="ph ph-users"></i></div><div class="metric-info"><div class="metric-val">200</div><div class="metric-lbl">Active Researchers</div><div class="metric-delta up"><i class="ph ph-trend-up"></i> +8</div></div></div>
+      <div class="metric-card rose"><div class="metric-icon"><i class="ph ph-currency-dollar"></i></div><div class="metric-info"><div class="metric-val">$18.4M</div><div class="metric-lbl">Active Grants</div><div class="metric-delta up"><i class="ph ph-trend-up"></i> +6.4%</div></div></div>
+    </div>
+    <div class="panel-row"><div class="panel"><div class="panel-header"><h3>Publications by Domain</h3><a href="404.html" class="btn-sm">Full Report</a></div><div class="chart-area" id="chartArea"></div></div><div class="panel"><div class="panel-header"><h3>Lab Status</h3><a href="404.html" class="btn-sm">Manage</a></div><div class="site-rows" id="siteRows"></div></div></div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="page" id="page-metrics"><h2 class="page-heading">Research Metrics</h2><div class="metrics-grid"><div class="metric-card blue"><div class="metric-icon"><i class="ph ph-flask"></i></div><div class="metric-info"><div class="metric-val">23</div><div class="metric-lbl">Active Studies</div></div></div><div class="metric-card green"><div class="metric-icon"><i class="ph ph-file-text"></i></div><div class="metric-info"><div class="metric-val">142</div><div class="metric-lbl">Total Publications</div></div></div><div class="metric-card teal"><div class="metric-icon"><i class="ph ph-citation"></i></div><div class="metric-info"><div class="metric-val">1.2K</div><div class="metric-lbl">Total Citations</div></div></div><div class="metric-card amber"><div class="metric-icon"><i class="ph ph-currency-dollar"></i></div><div class="metric-info"><div class="metric-val">18</div><div class="metric-lbl">Active Grants</div></div></div></div><div class="big-chart-wrap"><div class="panel"><div class="panel-header"><h3>Yearly Publication Output</h3><a href="404.html" class="btn-sm">Export</a></div><canvas id="bigChart" class="big-canvas"></canvas></div></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-download-simple"></i> Download Full Metrics</button></div>
+
+  <!-- LAB MANAGER -->
+  <div class="page" id="page-sites"><h2 class="page-heading">Lab Manager</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Lab Name</th><th>Domain</th><th>Active Studies</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>Cambridge Genomics Lab</td><td>Genomics</td><td>12</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>MIT AI Collaboration</td><td>AI & Robotics</td><td>8</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Kerala Micro-Hydro</td><td>Energy</td><td>4</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Space Spectroscopy Array</td><td>Space</td><td>6</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Biotech Fabrication Lab</td><td>Biotech</td><td>—</td><td><span class="status-pill warn">Maintenance</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Environmental Science Hub</td><td>Environment</td><td>9</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr></tbody></table></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-plus"></i> Register New Lab</button></div>
+
+  <!-- REVIEWS -->
+  <div class="page" id="page-alerts"><h2 class="page-heading">Pending Reviews</h2><div class="alerts-list"><div class="alert-card warn"><i class="ph ph-warning"></i><div><strong>Mumbai Battery Hub</strong><p>Scheduled maintenance active</p><span class="alert-time">2 hrs ago</span></div><a href="404.html" class="btn-sm">Resolve</a></div><div class="alert-card info"><i class="ph ph-info"></i><div><strong>Kerala Micro-Hydro</strong><p>Water flow reduced 12%</p><span class="alert-time">5 hrs ago</span></div><a href="404.html" class="btn-sm">Details</a></div><div class="alert-card warn"><i class="ph ph-warning"></i><div><strong>Rajasthan Solar Park</strong><p>Panel cleaning due</p><span class="alert-time">8 hrs ago</span></div><a href="404.html" class="btn-sm">Schedule</a></div></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-bell-slash"></i> Dismiss All</button></div>
+
+  <!-- RESEARCHERS -->
+  <div class="page" id="page-users"><h2 class="page-heading">Researcher Management</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>Dr. Elena Vasquez</td><td>elena@stackly.org</td><td>Admin</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Prof. James O'Donnell</td><td>james@stackly.org</td><td>Lead</td><td><span class="status-pill on">Active</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr><tr><td>Dr. Lisa Park</td><td>lisa@stackly.org</td><td>Lead</td><td><span class="status-pill warn">Pending</span></td><td><a href="404.html" class="btn-sm">Edit</a></td></tr></tbody></table></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-user-plus"></i> Invite Researcher</button></div>
+
+  <!-- INSTRUMENTS -->
+  <div class="page" id="page-devices"><h2 class="page-heading">Instruments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Device ID</th><th>Type</th><th>Lab</th><th>Last Ping</th><th>Status</th></tr></thead><tbody><tr><td>STK-CRYO-001</td><td>Cryo-EM</td><td>Cambridge</td><td>2m ago</td><td><span class="status-pill on">Online</span></td></tr><tr><td>STK-MASS-002</td><td>Mass Spec</td><td>MIT</td><td>1m ago</td><td><span class="status-pill on">Online</span></td></tr><tr><td>STK-SEQ-003</td><td>Sequencer</td><td>Biotech</td><td>4h ago</td><td><span class="status-pill warn">Offline</span></td></tr></tbody></table></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-plus"></i> Register Instrument</button></div>
+
+  <!-- REPORTS -->
+  <div class="page" id="page-reports"><h2 class="page-heading">Admin Reports</h2><div class="report-list"><div class="report-item"><i class="ph ph-file-text"></i><div><strong>Executive Summary — June 2026</strong><p>Full KPI breakdown</p></div><a href="404.html" class="btn-sm">Download</a></div><div class="report-item"><i class="ph ph-file-text"></i><div><strong>Compliance Report — Q1 2026</strong><p>Regulatory metrics</p></div><a href="404.html" class="btn-sm">Download</a></div><div class="report-item"><i class="ph ph-file-text"></i><div><strong>Financial Report — FY 2025</strong><p>Revenue & ROI</p></div><a href="404.html" class="btn-sm">Download</a></div></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-plus"></i> Generate Report</button></div>
+
+  <!-- FUNDING -->
+  <div class="page" id="page-billing">
+    <h2 class="page-heading">Funding</h2>
+    <div class="billing-metrics-grid">
+      <div class="metric-card green"><div class="metric-icon"><i class="ph ph-currency-dollar"></i></div><div class="metric-info"><div class="metric-val">$18.4M</div><div class="metric-lbl">This Quarter</div></div></div>
+      <div class="metric-card blue"><div class="metric-icon"><i class="ph ph-receipt"></i></div><div class="metric-info"><div class="metric-val">6</div><div class="metric-lbl">Grants Pending</div></div></div>
+      <div class="metric-card teal"><div class="metric-icon"><i class="ph ph-check-circle"></i></div><div class="metric-info"><div class="metric-val">$42M</div><div class="metric-lbl">YTD Research Funding</div></div></div>
+    </div>
+    <button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-receipt"></i> View Grants</button>
+  </div>
+
+  <!-- LOGS -->
+  <div class="page" id="page-logs"><h2 class="page-heading">System Logs</h2><div class="log-terminal" id="logTerminal"></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-download-simple"></i> Export Logs</button></div>
+
+  <!-- SETTINGS -->
+  <div class="page" id="page-settings"><h2 class="page-heading">System Settings</h2><div class="settings-list"><div class="setting-row"><span>API Configuration</span><a href="404.html" class="btn-sm">Manage</a></div><div class="setting-row"><span>Email & Notifications</span><a href="404.html" class="btn-sm">Configure</a></div><div class="setting-row"><span>Data Retention Policy</span><a href="404.html" class="btn-sm">Configure</a></div><div class="setting-row"><span>Security & 2FA</span><a href="404.html" class="btn-sm">Manage</a></div><div class="setting-row"><span>Backup & Restore</span><a href="404.html" class="btn-sm">Manage</a></div><div class="setting-row"><span>Danger Zone</span><a href="404.html" class="btn-sm danger">Reset System</a></div></div></div>
+</main>
+
+<script src="dashboardadmin.js"></script>
+</body>
+</html>

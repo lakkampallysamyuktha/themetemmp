@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Stackly Research Notes</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="blog.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ─── ADDITIONAL MOBILE FIXES (keep desktop untouched) ─── */
+
+        /* Hide header nav-actions on mobile – they live inside the nav overlay now */
+        @media (max-width: 768px) {
+            .header .nav-actions {
+                display: none !important;
+            }
+
+            /* Make sure the nav overlay is full-screen and well-spaced */
+            .nav.open {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 4rem 1.5rem 2.5rem;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100dvh;
+                z-index: 1002;
+                border-radius: 0;
+                box-shadow: none;
+                animation: fadeIn 0.3s ease;
+                overflow-y: auto;
+            }
+
+            .nav a {
+                font-size: 1.4rem;
+                padding: 0.7rem 1.5rem;
+                border-radius: 12px;
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+                text-align: center;
+                font-weight: 500;
+            }
+
+            .nav a.active {
+                background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+                color: #fff;
+                box-shadow: 0 4px 14px -4px rgba(15, 107, 107, 0.5);
+            }
+
+            .nav a:not(.active):hover {
+                background: var(--color-primary-light);
+            }
+
+            /* nav-actions inside the mobile overlay */
+            .nav .nav-actions {
+                display: flex !important;
+                flex-direction: column;
+                gap: 0.6rem;
+                margin: 0.5rem 0 0;
+                width: 100%;
+                max-width: 300px;
+                border-top: 1px solid var(--color-secondary);
+                padding-top: 0.8rem;
+                flex-shrink: 0;
+            }
+
+            .nav .nav-actions .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
+                border-radius: 50px;
+            }
+
+            .nav .nav-actions .btn-primary {
+                padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+            }
+
+            .nav .nav-actions .btn-primary .btn-icon-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            /* Hamburger stays visible and properly positioned */
+            .hamburger {
+                display: flex !important;
+                z-index: 1005;
+                width: 36px;
+                height: 36px;
+                position: relative;
+                padding: 0;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                margin-left: auto;
+            }
+
+            .hamburger span {
+                position: absolute;
+                left: 50%;
+                width: 24px;
+                height: 2px;
+                background: var(--color-text);
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+            .hamburger span:nth-child(1) {
+                top: 8px;
+                transform: translateX(-50%);
+            }
+            .hamburger span:nth-child(2) {
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            .hamburger span:nth-child(3) {
+                bottom: 8px;
+                transform: translateX(-50%);
+            }
+
+            .hamburger.open {
+                position: fixed;
+                right: 20px;
+                top: 18px;
+                z-index: 1005;
+            }
+            .hamburger.open span:nth-child(1) {
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-50%) scaleX(0);
+            }
+            .hamburger.open span:nth-child(3) {
+                top: 50%;
+                bottom: auto;
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            /* Header itself on mobile: logo + hamburger only */
+            .header {
+                height: 66px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(14px) saturate(160%);
+                -webkit-backdrop-filter: blur(14px) saturate(160%);
+            }
+
+            .header-inner {
+                padding: 0 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+
+            .logo-wrapper {
+                width: 110px;
+                height: 50px;
+                flex-shrink: 0;
+            }
+
+            /* Prevent body scroll when menu is open */
+            body.menu-open {
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        /* Very small screens: tighter spacing */
+        @media (max-width: 480px) {
+            .nav.open {
+                padding: 3rem 1rem 2rem;
+                gap: 0.4rem;
+            }
+            .nav a {
+                font-size: 1.2rem;
+                padding: 0.6rem 1.2rem;
+                max-width: 260px;
+            }
+            .nav .nav-actions {
+                max-width: 260px;
+            }
+            .nav .nav-actions .btn {
+                font-size: 0.85rem;
+                padding: 0.6rem 1.2rem;
+            }
+            .logo-wrapper {
+                width: 90px;
+                height: 42px;
+            }
+            .hamburger {
+                width: 30px;
+                height: 30px;
+            }
+            .hamburger span {
+                width: 20px;
+                height: 2px;
+            }
+            .hamburger span:nth-child(1) {
+                top: 6px;
+            }
+            .hamburger span:nth-child(3) {
+                bottom: 6px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── TOP BAR ─── -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <span class="top-msg"><span class="top-icon">⚛</span> Stackly — Where Science Meets Discovery</span>
+            <div class="top-contact">
+                <span><span class="top-icon">✉</span> research@stackly.org</span>
+                <span><span class="top-icon">📞</span> +1 (617) 555-0199</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── HEADER ─── -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-wrapper">
+                <img src="logo-removebg-preview.webp" alt="Stackly" class="nav-logo-mask" />
+            </a>
+
+            <nav class="nav" id="nav">
+                <a href="index.html"><span class="nav-icon">⌂</span> Home</a>
+                <a href="about.html"><span class="nav-icon">◌</span> About</a>
+                <a href="research.html"><span class="nav-icon">◈</span> Research</a>
+                <a href="blog.html" class="active"><span class="nav-icon">📰</span> Blog</a>
+                <a href="contact.html"><span class="nav-icon">💬</span> Contact</a>
+
+                <!-- nav-actions moved inside nav for mobile overlay -->
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">LOGIN</a>
+                    <a href="contact.html" class="btn btn-primary">
+                        COLLABORATE
+                        <span class="btn-icon-arrow">↗</span>
+                    </a>
+                </div>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap">
+    <div class="container" style="max-width:100%; padding:0 24px; overflow:hidden;">
+        <div class="ticker-inner">
+            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+        </div>
+    </div>
+</div>
+
+    <!-- ════════════════════════════════════════════
+         SECTION 1 — HERO
+         Headline + live search + stat counters
+    ════════════════════════════════════════════ -->
+    <section class="blog-hero">
+        <div class="blog-hero-bg" aria-hidden="true"></div>
+        <div class="blog-hero-glow" aria-hidden="true"></div>
+        <div class="container blog-hero-inner">
+
+            <!-- ── LEFT CONTENT ── -->
+            <div class="blog-hero-left fade-in-up">
+                <span class="blog-tag"><span class="blog-tag-dot"></span> RESEARCH NOTES</span>
+                <h1>Ideas in progress, <span>written down</span> before they're finished.</h1>
+                <p>Field notes, failed experiments, and early results from inside the network — published as we learn, not after the fact.</p>
+
+                <div class="blog-search-hero">
+                    <span class="bsh-icon">🔍</span>
+                    <input type="text" id="blogSearchInput" placeholder="Search articles, authors, topics…" autocomplete="off" />
+                    <button type="button" id="bsClear" class="bsh-clear" aria-label="Clear search">✕</button>
+                </div>
+
+                <div class="bhs-row">
+                    <div class="bhs-item">
+                        <strong><span class="bhs-num" data-target="214" data-format="abbr">0</span><span class="bhs-plus">+</span></strong>
+                        <span>Articles published</span>
+                    </div>
+                    <div class="bhs-divider"></div>
+                    <div class="bhs-item">
+                        <strong><span class="bhs-num" data-target="38000" data-format="abbr">0</span></strong>
+                        <span>Monthly readers</span>
+                    </div>
+                    <div class="bhs-divider"></div>
+                    <div class="bhs-item">
+                        <strong><span class="bhs-num" data-target="7">0</span></strong>
+                        <span>Active beats</span>
+                    </div>
+                    <div class="bhs-divider"></div>
+                    <div class="bhs-item">
+                        <strong><span class="bhs-num" data-target="52">0</span></strong>
+                        <span>Contributing researchers</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── RIGHT SIDE PANEL ── -->
+            <div class="blog-hero-right fade-in-up" data-delay="150">
+                <div class="blog-side-panel">
+                    <div class="bsp-photo-wrap">
+                        <img src="index13re.webp"
+                             alt="Stackly research notes"
+                             onerror="this.src='https://placehold.co/620x380/0f6b6b/ffffff?text=Research+Notes'" />
+                        <div class="bsp-photo-overlay">
+                            <span>Published as we learn.</span>
+                        </div>
+                    </div>
+                    <div class="bsp-panel-head">
+                        <span>BLOG STATS</span>
+                        <span class="bsp-pulse"></span>
+                    </div>
+                    <div class="bsp-rows">
+                        <div class="bsp-row">
+                            <span class="bsp-label">Articles published</span>
+                            <span class="bsp-val bhs-num" data-target="214" data-format="abbr">0</span>
+                        </div>
+                        <div class="bsp-row">
+                            <span class="bsp-label">Monthly readers</span>
+                            <span class="bsp-val bhs-num" data-target="38000" data-format="abbr">0</span>
+                        </div>
+                        <div class="bsp-row">
+                            <span class="bsp-label">Active beats</span>
+                            <span class="bsp-val bhs-num" data-target="7">0</span>
+                        </div>
+                        <div class="bsp-row">
+                            <span class="bsp-label">Contributors</span>
+                            <span class="bsp-val bhs-num" data-target="52">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SECTION 2 — TOPIC TILES
+         Visual icon-tile grid, distinct from the article
+         card grid below. Clicking scrolls + filters.
+    ════════════════════════════════════════════ -->
+    <section class="section section-alt topic-zone">
+        <div class="container">
+            <div class="section-header reveal" data-anim="up">
+                <span class="eyebrow">Browse by Beat</span>
+                <h2>Pick a thread, pull on it.</h2>
+                <p>Every article is tagged to one of seven active research beats. Jump straight to what you're chasing.</p>
+            </div>
+
+            <div class="topic-grid">
+                <button class="topic-tile reveal" data-anim="up" data-delay="0" data-filter="health">
+                    <span class="tt-icon">🧬</span>
+                    <span class="tt-name">Healthcare</span>
+                    <span class="tt-count">41 articles</span>
+                </button>
+                <button class="topic-tile reveal" data-anim="up" data-delay="60" data-filter="space">
+                    <span class="tt-icon">🚀</span>
+                    <span class="tt-name">Space</span>
+                    <span class="tt-count">29 articles</span>
+                </button>
+                <button class="topic-tile reveal" data-anim="up" data-delay="120" data-filter="climate">
+                    <span class="tt-icon">🌍</span>
+                    <span class="tt-name">Climate</span>
+                    <span class="tt-count">37 articles</span>
+                </button>
+                <button class="topic-tile reveal" data-anim="up" data-delay="180" data-filter="energy">
+                    <span class="tt-icon">⚡</span>
+                    <span class="tt-name">Energy</span>
+                    <span class="tt-count">24 articles</span>
+                </button>
+                <button class="topic-tile reveal" data-anim="up" data-delay="240" data-filter="robotics">
+                    <span class="tt-icon">🤖</span>
+                    <span class="tt-name">Robotics &amp; AI</span>
+                    <span class="tt-count">46 articles</span>
+                </button>
+                <button class="topic-tile reveal" data-anim="up" data-delay="300" data-filter="biotech">
+                    <span class="tt-icon">🧪</span>
+                    <span class="tt-name">Biotech</span>
+                    <span class="tt-count">37 articles</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SECTION 3 — FEATURED SPOTLIGHT
+         Single large editor's-pick layout — image/text
+         split, distinct from the card grid below.
+    ════════════════════════════════════════════ -->
+    <section class="section featured-zone">
+        <div class="container">
+            <span class="eyebrow reveal" data-anim="up">Editor's Pick</span>
+            <div class="featured-split">
+                <div class="featured-media reveal" data-anim="left">
+                    <img src="blogresearch2.webp" alt="Researcher reviewing satellite climate data on a monitor" loading="lazy" />
+                    <span class="featured-media-tag">🌍 Climate</span>
+                </div>
+                <div class="featured-text reveal" data-anim="right" data-delay="120">
+                    <span class="featured-kicker">Long read · 12 min</span>
+                    <h2>The ocean isn't absorbing carbon the way the models said it would.</h2>
+                    <p>Three years of buoy data from the Pacific basin are forcing a quiet recalculation across half a dozen labs — and the gap is bigger than anyone published out loud.</p>
+                    <div class="featured-byline">
+                        <span class="featured-avatar">DR</span>
+                        <div>
+                            <strong>Dr. Naomi Reyes</strong>
+                            <span>Oceanography Lead · Published June 14, 2026</span>
+                        </div>
+                    </div>
+                    <a href="404.html" class="btn btn-primary">Read the Full Piece →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SECTION 4 — ARTICLE GRID
+         Search + filter toolbar + the required
+         #blogCardsGrid wired to blog.js
+    ════════════════════════════════════════════ -->
+    <section class="section section-alt" id="blogGrid">
+        <div class="container">
+            <div class="section-header reveal" data-anim="up">
+                <span class="eyebrow">All Articles</span>
+                <h2>Every dispatch, searchable.</h2>
+                <p>Filter by beat or search across titles, authors, and topics.</p>
+            </div>
+
+            <div class="blog-toolbar reveal" data-anim="up" data-delay="80">
+                <div class="blog-filters" id="blogFilters">
+                    <button class="blog-chip active" data-filter="all">All</button>
+                    <button class="blog-chip" data-filter="health">Healthcare</button>
+                    <button class="blog-chip" data-filter="space">Space</button>
+                    <button class="blog-chip" data-filter="climate">Climate</button>
+                    <button class="blog-chip" data-filter="energy">Energy</button>
+                    <button class="blog-chip" data-filter="robotics">Robotics &amp; AI</button>
+                    <button class="blog-chip" data-filter="biotech">Biotech</button>
+                </div>
+                <span class="blog-count-pill" id="blogCountPill">7 articles</span>
+            </div>
+
+            <div class="blog-grid" id="blogCardsGrid">
+
+                <article class="blog-card reveal" data-anim="up" data-delay="0" data-domain="health" data-search="crispr gene editing clinical trial">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
+                        <span class="bc-date">Jun 18, 2026</span>
+                    </div>
+                    <h4 class="bc-title">Inside the first human trial of in-vivo Prime Editing</h4>
+                    <p class="bc-excerpt">Patient-zero data from the liver-disease cohort suggests the correction holds past the 6-month mark — earlier than the team expected.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Dr. Amara Osei</span>
+                        <span class="bc-readtime">7 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="60" data-domain="space" data-search="exoplanet jwst biosignature telescope">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-space">🚀 Space</span>
+                        <span class="bc-date">Jun 15, 2026</span>
+                    </div>
+                    <h4 class="bc-title">What a single methane spike on K2-18b actually tells us</h4>
+                    <p class="bc-excerpt">Not life — not yet. But the spectral signature ruled out three abiotic explanations the team had bet on.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Priya Chandrasekar</span>
+                        <span class="bc-readtime">9 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="120" data-domain="climate" data-search="ocean carbon sink ipcc model saturation">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-climate">🌍 Climate</span>
+                        <span class="bc-date">Jun 14, 2026</span>
+                    </div>
+                    <h4 class="bc-title">The ocean isn't absorbing carbon the way the models said</h4>
+                    <p class="bc-excerpt">Three years of Pacific buoy data are forcing a quiet recalculation across half a dozen labs.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Dr. Naomi Reyes</span>
+                        <span class="bc-readtime">12 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="180" data-domain="energy" data-search="solid state battery energy density wh/kg">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-energy">⚡ Energy</span>
+                        <span class="bc-date">Jun 11, 2026</span>
+                    </div>
+                    <h4 class="bc-title">500 Wh/kg, and why that number almost wasn't real</h4>
+                    <p class="bc-excerpt">A look inside the solid-state cell that beat its own spec sheet twice during testing — and the failure that nearly buried it.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Marcus Lindqvist</span>
+                        <span class="bc-readtime">6 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="240" data-domain="robotics" data-search="swarm robotics darpa disaster response autonomy">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-robotics">🤖 Robotics &amp; AI</span>
+                        <span class="bc-date">Jun 9, 2026</span>
+                    </div>
+                    <h4 class="bc-title">We sent forty robots into a collapsed structure. Six came back useful.</h4>
+                    <p class="bc-excerpt">Lessons from the DARPA-funded swarm trial, and why "more units" turned out to be the wrong instinct.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Dr. Felix Tran</span>
+                        <span class="bc-readtime">8 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="300" data-domain="biotech" data-search="foundation model hypothesis generation ai research">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-biotech">🧪 Biotech</span>
+                        <span class="bc-date">Jun 6, 2026</span>
+                    </div>
+                    <h4 class="bc-title">We let a foundation model propose its own experiments</h4>
+                    <p class="bc-excerpt">It suggested 40 hypotheses. We ran the 6 that were actually testable. One of them held up.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Sofia Marchetti</span>
+                        <span class="bc-readtime">10 min read</span>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal" data-anim="up" data-delay="360" data-domain="health" data-search="gut microbiome longevity cohort study">
+                    <div class="bc-top">
+                        <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
+                        <span class="bc-date">Jun 3, 2026</span>
+                    </div>
+                    <h4 class="bc-title">A decade-long gut-microbiome cohort just hit its first real signal</h4>
+                    <p class="bc-excerpt">Ten years of stool samples from 1,200 volunteers finally produced something worth publishing.</p>
+                    <div class="bc-foot">
+                        <span class="bc-author">Dr. Amara Osei</span>
+                        <span class="bc-readtime">5 min read</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="blog-empty" id="blogEmpty">No articles match your search. Try a different term or clear the filter.</p>
+
+            <div class="blog-loadmore-wrap">
+                <button class="btn btn-outline" id="blogLoadMore">Load More Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SECTION 5 — NEWSLETTER CTA
+         Closing band, distinct visual treatment
+    ════════════════════════════════════════════ -->
+    <section class="blog-cta-zone">
+        <div class="container">
+            <div class="blog-cta-card reveal" data-anim="scale">
+                <div class="blog-cta-orbits" aria-hidden="true">
+                    <span>🧬</span><span>🚀</span><span>🌍</span><span>⚡</span><span>🤖</span>
+                </div>
+                <span class="eyebrow">Stay In The Loop</span>
+                <h2>One email, every other Friday.</h2>
+                <p>The pieces that mattered, the data that surprised us, and nothing you didn't ask for.</p>
+                <form class="blog-cta-form" action="404.html">
+                    <input type="email" placeholder="Enter your email address" required />
+                    <button type="submit">Subscribe →</button>
+                </form>
+                <span class="blog-cta-note">No spam. Unsubscribe anytime. ~38,000 researchers already reading.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer" id="footer">
+        <div class="container">
+
+            <div class="newsletter-pill-wrap">
+                <form class="newsletter-pill-form fade-in-up" action="404.html">
+                    <input type="email" placeholder="Enter email address" required />
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo-wrapper">
+                        <img src="logo-removebg-preview.webp" alt="Stackly" class="footer-logo-mask" />
+                    </a>
+                    <p class="footer-tagline">Each demo built with Stackly will look different. You can customize almost anything appearance of your website with only a few.</p>
+                    <p class="footer-contact-info">📞 +1 (617) 555-0199</p>
+                    <p class="footer-contact-info">📧 research@stackly.org</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Research Areas</h4>
+                    <ul>
+                        <li><a href="research.html">Healthcare Research</a></li>
+                        <li><a href="research.html">Space Research</a></li>
+                        <li><a href="research.html">Environmental Science</a></li>
+                        <li><a href="research.html">Renewable Energy</a></li>
+                        <li><a href="research.html">Biotechnology</a></li>
+                        <li><a href="research.html">Robotics &amp; AI</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="404.html">Working Process</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms &amp; Conditions</a></li>
+                        <li><a href="404.html">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright-text">© 2026 Stackly, All Rights Reserved, Created by Stackly™</p>
+                <div class="footer-bottom-right">
+                    <div class="footer-bottom-socials">
+                        <a href="404.html" class="social-icon" aria-label="Twitter/X">𝕏</a>
+                       <a href="404.html" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="404.html" class="social-icon" aria-label="LinkedIn">in</a>
+                        <a href="404.html" class="social-icon" aria-label="Facebook">f</a>
+                    </div>
+                   <form class="search-box" action="404.html" method="get">
+    <input type="text" name="q" placeholder="Type here to search" required />
+    <button type="submit" aria-label="Search">🔍</button>
+</form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top-circle" aria-label="Back to top">↑</a>
+
+    <script src="home.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>

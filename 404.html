@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page not found · Stackly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ─── RESET & BASE (matches Stackly) ─── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --color-primary: #0f6b6b;
+            --color-primary-dark: #0a4d4d;
+            --color-primary-light: #e6f5f2;
+            --color-secondary: #e0e8ec;
+            --color-text: #1a2a33;
+            --color-text-muted: #5a6b7c;
+            --color-white: #ffffff;
+            --color-bg: #f7fafc;
+            --shadow-lg: 0 20px 60px rgba(15, 107, 107, 0.12);
+            --radius: 20px;
+            --transition: 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            --font: 'Outfit', sans-serif;
+        }
+        html, body {
+            height: 100%;
+            font-family: var(--font);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        a, button {
+            font-family: var(--font);
+            text-decoration: none;
+        }
+
+        /* ─── 404 CARD ─── */
+        .error-container {
+            max-width: 560px;
+            width: 100%;
+            background: var(--color-white);
+            border-radius: var(--radius);
+            padding: 3rem 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(15, 107, 107, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .error-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), #1ac8c8, var(--color-primary));
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 0 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .error-icon {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
+        }
+
+        .error-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .error-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 0.4rem;
+        }
+        .error-message {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1.5px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--color-white);
+            color: var(--color-text);
+            border-color: var(--color-secondary);
+        }
+        .btn-primary {
+            background: var(--color-primary);
+            color: #fff;
+            border-color: var(--color-primary);
+        }
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 107, 107, 0.25);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-text);
+            border-color: var(--color-secondary);
+        }
+        .btn-outline:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+            background: var(--color-primary-light);
+        }
+        .btn-icon {
+            transition: transform 0.25s ease;
+        }
+        .btn-primary:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        /* ─── subtle background ornament ─── */
+        .error-bg-dots {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(15, 107, 107, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .error-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── responsive ─── */
+        @media (max-width: 480px) {
+            .error-container { padding: 2rem 1.5rem; }
+            .error-title { font-size: 2rem; }
+            .error-icon { font-size: 3.5rem; }
+            .btn { width: 100%; justify-content: center; }
+            .error-actions { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-bg-dots" aria-hidden="true"></div>
+
+    <div class="error-container" role="main" aria-labelledby="error-title">
+        <div class="error-icon">🔬</div>
+        <h1 class="error-title" id="error-title">404</h1>
+        <p class="error-subtitle">Page not found</p>
+        <p class="error-message">
+            The page you’re looking for doesn’t exist or may have been moved.<br />
+            Let’s get you back on track.
+        </p>
+
+        <div class="error-actions">
+            <a href="index.html" class="btn btn-primary">
+                <span>Go to Home</span>
+                <span class="btn-icon">→</span>
+            </a>
+            <button class="btn btn-outline" onclick="history.back()">
+                <span class="btn-icon">←</span>
+                <span>Go Back</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

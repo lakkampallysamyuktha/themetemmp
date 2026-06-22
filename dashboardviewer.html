@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Stackly — Viewer Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="dashboardviewer.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <!-- Logo fixed with placeholder fallback -->
+      <img src="logo-removebg-preview.webp" onerror="this.src='https://placehold.co/200x80/0f6b6b/ffffff?text=Stackly'" alt="Stackly" class="nav-logo-img">
+    </a>
+    <button class="sidebar-close" id="sidebarCloseBtn">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a href="#" class="nav-item active" data-page="overview"><i class="ph ph-squares-four"></i><span>Overview</span></a>
+    <a href="#" class="nav-item" data-page="energy"><i class="ph ph-flask"></i><span>Research Feed</span></a>
+    <a href="#" class="nav-item" data-page="sites"><i class="ph ph-map-pin"></i><span>Lab Network</span></a>
+    <a href="#" class="nav-item" data-page="reports"><i class="ph ph-chart-bar"></i><span>Reports</span></a>
+    <div class="nav-section-label">Resources</div>
+    <a href="#" class="nav-item" data-page="gallery"><i class="ph ph-images"></i><span>Gallery</span></a>
+    <a href="#" class="nav-item" data-page="news"><i class="ph ph-newspaper"></i><span>News</span></a>
+    <a href="#" class="nav-item" data-page="learn"><i class="ph ph-book-open"></i><span>Learn</span></a>
+    <div class="nav-section-label">Account</div>
+    <a href="#" class="nav-item" data-page="profile"><i class="ph ph-user-circle"></i><span>My Profile</span></a>
+    <a href="#" class="nav-item" data-page="settings"><i class="ph ph-gear"></i><span>Settings</span></a>
+  </nav>
+  <div class="sidebar-bottom">
+    <a href="index.html" class="logout-btn"><i class="ph ph-sign-out"></i> Logout</a>
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+    <div class="topbar-title" id="pageTitle">Overview</div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-actions">
+      <button class="topbar-btn" onclick="location.href='404.html'"><i class="ph ph-bell"></i></button>
+      <button class="topbar-btn" onclick="location.href='404.html'"><i class="ph ph-magnifying-glass"></i></button>
+    </div>
+    <div class="user-profile">
+      <div class="user-avatar" id="userAvatar">U</div>
+      <div class="user-info-text">
+        <div class="user-name" id="userName">Viewer</div>
+        <div class="user-email" id="userEmail">viewer@stackly.org</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="main-content">
+  <!-- OVERVIEW -->
+  <div class="page active" id="page-overview">
+    <div class="user-greeting"><div><h2 id="greetName">Hello, User!</h2><p id="greetEmail">viewer@stackly.org · Viewer</p></div><div class="greeting-badge"><i class="ph ph-sun"></i> Live Data</div></div>
+    <div class="cards-grid">
+      <div class="stat-card green"><i class="ph ph-flask"></i><div class="stat-val">42</div><div class="stat-lbl">Active Labs</div></div>
+      <div class="stat-card teal"><i class="ph ph-file-text"></i><div class="stat-val">142</div><div class="stat-lbl">Total Publications</div></div>
+      <div class="stat-card lime"><i class="ph ph-citation"></i><div class="stat-val">1.2K</div><div class="stat-lbl">Citations</div></div>
+      <div class="stat-card sky"><i class="ph ph-users"></i><div class="stat-val">200</div><div class="stat-lbl">Researchers</div></div>
+    </div>
+    <h3 class="section-title">Research Labs</h3>
+    <div class="img-grid">
+      <!-- All images replaced with working placeholders matching the theme -->
+      <div class="img-card"><img src="dash1research.webp" alt="Genomics"/><div class="img-overlay"><span class="img-tag">Genomics</span><h4>Cambridge Genomics Lab</h4><p>Studies: 12</p></div></div>
+      <div class="img-card"><img src="dash2reserach.webp" alt="AI"/><div class="img-overlay"><span class="img-tag">AI</span><h4>MIT AI Collaboration</h4><p>Studies: 8</p></div></div>
+      <div class="img-card"><img src="dash3research.webp" alt="Space"/><div class="img-overlay"><span class="img-tag">Space</span><h4>Space Spectroscopy Array</h4><p>Studies: 6</p></div></div>
+      <div class="img-card"><img src="dash4research.webp" alt="Biotech"/><div class="img-overlay"><span class="img-tag">Biotech</span><h4>Biotech Fabrication Lab</h4><p>Status: Maintenance</p></div></div>
+      <div class="img-card"><img src="dash5research.webp" alt="Energy"/><div class="img-overlay"><span class="img-tag">Energy</span><h4>Energy Storage Lab</h4><p>Studies: 9</p></div></div>
+      <div class="img-card"><img src="dash6research.webp" alt="Environment"/><div class="img-overlay"><span class="img-tag">Environment</span><h4>Environmental Science Hub</h4><p>Studies: 9</p></div></div>
+    </div>
+  </div>
+
+  <!-- RESEARCH FEED -->
+  <div class="page" id="page-energy"><h2 class="page-heading">Live Research Feed</h2><div class="energy-feed" id="energyFeed"></div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-download-simple"></i> Export Feed</button></div>
+
+  <!-- LAB NETWORK MAP -->
+  <div class="page" id="page-sites"><h2 class="page-heading">Lab Network Map</h2><div class="map-placeholder">
+    <!-- Map image replaced with placeholder -->
+    <img src="dashmap.webp" alt="Map"/>
+    <div class="map-pins"><div class="map-pin" style="top:30%;left:25%"><i class="ph ph-map-pin"></i><span>Cambridge</span></div><div class="map-pin" style="top:50%;left:55%"><i class="ph ph-map-pin"></i><span>Boston</span></div><div class="map-pin" style="top:70%;left:40%"><i class="ph ph-map-pin"></i><span>Kerala</span></div></div>
+  </div><button class="page-btn" onclick="location.href='404.html'"><i class="ph ph-share-network"></i> Share Map</button></div>
+
+  <!-- REPORTS -->
+  <div class="page" id="page-reports"><h2 class="page-heading">Reports</h2><div class="report-list"><div class="report-item"><i class="ph ph-file-text"></i><div><strong>June 2026 — Monthly Summary</strong><p>Research metrics</p></div><a href="404.html" class="btn-sm">Download</a></div><div class="report-item"><i class="ph ph-file-text"></i><div><strong>Q1 2026 — Quarterly Review</strong><p>Lab performance</p></div><a href="404.html" class="btn-sm">Download</a></div><div class="report-item"><i class="ph ph-file-text"></i><div><strong>Annual Report 2025</strong><p>Full year data</p></div><a href="404.html" class="btn-sm">Download</a></div></div></div>
+
+  <!-- GALLERY -->
+    <!-- GALLERY -->
+  <div class="page" id="page-gallery"><h2 class="page-heading">Gallery</h2><div class="gallery-grid">
+    <img src="dash8research.webp" alt="Genomics Lab"/>
+    <img src="dash9re.webp" alt="AI Research"/>
+    <img src="dash10re.webp" alt="Space Research"/>
+    <img src="dash11re.webp" alt="Biotech Lab"/>
+    <img src="dash12re.webp" alt="Energy Research"/>
+    <img src="dash13re.webp" alt="Environmental Science"/>
+  </div></div>
+
+  <!-- NEWS -->
+  <!-- NEWS -->
+  <div class="page" id="page-news"><h2 class="page-heading">Stackly News</h2><div class="news-list"><div class="news-card">
+    <img src="blogresearch2.webp" alt="CRISPR genome editing"/>
+    <div class="news-body"><span class="news-tag">Genomics</span><h4>CRISPR Prime Editing achieves 99.1% accuracy</h4><p>Breakthrough published in Nature Biotech.</p><a href="404.html" class="news-link">Read more <i class="ph ph-arrow-right"></i></a></div>
+  </div><div class="news-card">
+    <img src="dash10re.webp" alt="JWST exoplanet"/>
+    <div class="news-body"><span class="news-tag">Space</span><h4>JWST detects biosignature on K2-18b</h4><p>Exoplanet spectroscopy data submitted.</p><a href="404.html" class="news-link">Read more <i class="ph ph-arrow-right"></i></a></div>
+  </div><div class="news-card">
+    <img src="dash12re.webp" alt="Solid state battery"/>
+    <div class="news-body"><span class="news-tag">Energy</span><h4>Solid-state battery hits 500 Wh/kg</h4><p>New electrolyte design doubles EV range.</p><a href="404.html" class="news-link">Read more <i class="ph ph-arrow-right"></i></a></div>
+  </div></div></div>
+
+  <!-- LEARN -->
+  <div class="page" id="page-learn"><h2 class="page-heading">Learning Hub</h2><div class="learn-grid"><div class="learn-card"><i class="ph ph-dna"></i><h4>Genomics Basics</h4><p>Understanding CRISPR, sequencing, and gene editing.</p><a href="404.html" class="btn-sm">Start</a></div><div class="learn-card"><i class="ph ph-rocket"></i><h4>Space Science</h4><p>Exoplanets, spectroscopy, and astrobiology.</p><a href="404.html" class="btn-sm">Start</a></div><div class="learn-card"><i class="ph ph-brain"></i><h4>AI in Research</h4><p>Foundation models and hypothesis generation.</p><a href="404.html" class="btn-sm">Start</a></div></div></div>
+
+  <!-- PROFILE -->
+  <div class="page" id="page-profile"><h2 class="page-heading">My Profile</h2><div class="profile-card"><div class="profile-avatar" id="profileAvatar">U</div><h3 id="profileName">—</h3><p id="profileEmail" class="profile-email">—</p><div class="profile-badge">Viewer</div><a href="404.html" class="btn-sm" style="margin-top:20px">Edit Profile</a></div></div>
+
+  <!-- SETTINGS -->
+  <div class="page" id="page-settings"><h2 class="page-heading">Settings</h2><div class="settings-list"><div class="setting-row"><span>Email notifications</span><a href="404.html" class="btn-sm">Configure</a></div><div class="setting-row"><span>Language & timezone</span><a href="404.html" class="btn-sm">Configure</a></div><div class="setting-row"><span>Change password</span><a href="404.html" class="btn-sm">Update</a></div><div class="setting-row"><span>Delete account</span><a href="404.html" class="btn-sm danger">Delete</a></div></div></div>
+</main>
+
+<script src="dashboardviewer.js"></script>
+</body>
+</html>
