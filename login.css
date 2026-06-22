@@ -68,8 +68,8 @@ body::before {
 /* ─── FORM HEADER – logo pushed down with extra space ─── */
 .form-header {
   text-align: center;
-  margin-bottom: 32px;  /* more space below header */
-  padding-top: 20px;    /* extra space above logo */
+  margin-bottom: 32px;
+  padding-top: 20px;
 }
 .logo-wrapper {
   display: inline-block;
@@ -84,7 +84,7 @@ body::before {
   mask-position: center;
   width: 180px;
   height: 82px;
-  margin-top: 16px;  /* pushes logo down */
+  margin-top: 16px;
   margin-bottom: 8px;
 }
 
@@ -101,7 +101,7 @@ body::before {
 }
 .form-header p { color: rgba(255, 255, 255, 0.75); font-size: 0.9rem; }
 
-.form-fields { display: flex; flex-direction: column; gap: 20px; } /* more gap between fields */
+.form-fields { display: flex; flex-direction: column; gap: 20px; }
 
 .field-group { display: flex; flex-direction: column; gap: 6px; }
 .field-group label { font-size: 0.85rem; font-weight: 500; color: rgba(255, 255, 255, 0.9); }
@@ -128,24 +128,27 @@ body::before {
   box-shadow: 0 0 0 3px rgba(15, 107, 107, 0.2);
 }
 
-/* ─── HIDE BROWSER DEFAULT PASSWORD REVEAL ICON ─── */
+/* ─── COMPREHENSIVE BROWSER DEFAULT PASSWORD REVEAL HIDE ─── */
 /* Chrome, Edge, Safari */
 input[type="password"]::-webkit-credentials-auto-fill-button,
 input[type="password"]::-webkit-textfield-decoration-container,
-input[type="password"]::-webkit-search-decoration {
-  display: none !important;
-}
-input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-search-decoration,
 input[type="password"]::-webkit-reveal {
   display: none !important;
+  -webkit-appearance: none !important;
 }
 /* Firefox */
 input[type="password"]::-moz-reveal {
   display: none !important;
 }
-/* Generic fallback */
+/* IE/Edge (legacy) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+/* Fallback: ensure no extra space */
 input[type="password"] {
-  -webkit-text-security: disc; /* ensures proper masking */
+  -webkit-text-security: disc;
 }
 
 /* ─── CUSTOM TOGGLE – only one eye remains ─── */
