@@ -12,27 +12,28 @@ if (pCont) {
   }
 }
 
-// toggle password visibility
+// toggle main password visibility
 const togglePw = document.getElementById('togglePw');
 const pwInput = document.getElementById('signupPassword');
 const pwIcon = document.getElementById('pwIcon');
 if (togglePw) {
   togglePw.addEventListener('click', () => {
-    const vis = pwInput.type === 'text';
-    pwInput.type = vis ? 'password' : 'text';
-    pwIcon.className = vis ? 'ph ph-eye' : 'ph ph-eye-slash';
+    const isText = pwInput.type === 'text';
+    pwInput.type = isText ? 'password' : 'text';
+    // Correctly set icon: when hidden (password) -> eye; when visible (text) -> eye-slash
+    pwIcon.className = isText ? 'ph ph-eye-slash' : 'ph ph-eye';
   });
 }
 
-// toggle confirm password
+// toggle confirm password visibility
 const toggleConfirm = document.getElementById('toggleConfirmPw');
 const confirmInput = document.getElementById('confirmPassword');
 const confirmIcon = document.getElementById('confirmPwIcon');
 if (toggleConfirm) {
   toggleConfirm.addEventListener('click', () => {
-    const vis = confirmInput.type === 'text';
-    confirmInput.type = vis ? 'password' : 'text';
-    confirmIcon.className = vis ? 'ph ph-eye' : 'ph ph-eye-slash';
+    const isText = confirmInput.type === 'text';
+    confirmInput.type = isText ? 'password' : 'text';
+    confirmIcon.className = isText ? 'ph ph-eye-slash' : 'ph ph-eye';
   });
 }
 
