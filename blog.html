@@ -10,17 +10,14 @@
     <style>
         /* ════════════════════════════════════════════════════════
            LOGO SIZE INCREASES – desktop → tablet → mobile
-           NOW MATCHING index.html (BIGGER on tablet & phone)
+           MATCHING index.html (BIGGER on tablet & phone)
         ════════════════════════════════════════════════════════ */
 
-        /* ─── Desktop header logo ─── */
         .logo-wrapper {
             width: 180px;
             height: 82px;
             flex-shrink: 0;
         }
-
-        /* ─── Desktop footer logo ─── */
         .footer-logo-wrapper {
             width: 200px;
             height: 92px;
@@ -28,39 +25,134 @@
             margin-bottom: 1.2rem;
         }
 
-        /* ─── TABLET (≤768px) – BIGGER ─── */
         @media (max-width: 768px) {
-            .logo-wrapper {
-                width: 170px;
-                height: 78px;
-            }
-            .footer-logo-wrapper {
-                width: 190px;
-                height: 86px;
-            }
+            .logo-wrapper { width: 170px; height: 78px; }
+            .footer-logo-wrapper { width: 190px; height: 86px; }
         }
-
-        /* ─── MOBILE PHONE (≤480px) – BIGGEST ─── */
         @media (max-width: 480px) {
-            .logo-wrapper {
-                width: 150px;
-                height: 70px;
-            }
-            .footer-logo-wrapper {
-                width: 170px;
-                height: 78px;
-            }
+            .logo-wrapper { width: 150px; height: 70px; }
+            .footer-logo-wrapper { width: 170px; height: 78px; }
         }
 
-        /* ─── ADDITIONAL MOBILE FIXES (keep desktop untouched) ─── */
+        /* ─── FEATURED AUTHOR – WHITE TEXT ON DARK BG ─── */
+        .featured-byline {
+            background: var(--color-primary-dark);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.8rem;
+            transition: background 0.3s ease;
+        }
+        .featured-byline strong {
+            color: #ffffff !important;
+            font-weight: 700;
+        }
+        .featured-byline span {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-weight: 400;
+        }
+        .featured-avatar {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
 
-        /* Hide header nav-actions on mobile – they live inside the nav overlay now */
+        /* ─── SEARCH FORM – redirects to 404 with button ─── */
+        .blog-search-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            max-width: 520px;
+            margin: 0 0 2.6rem;
+            background: #fff;
+            border: 1px solid rgba(15,107,107,0.18);
+            border-radius: 50px;
+            box-shadow: 0 14px 32px -14px rgba(15,107,107,0.22);
+            padding: 0.2rem 0.3rem 0.2rem 1.2rem;
+            opacity: 0;
+            animation: blogFadeUp 0.7s ease 0.3s forwards;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-search-hero:focus-within {
+            border-color: var(--color-primary);
+            box-shadow: 0 16px 36px -12px rgba(15,107,107,0.32);
+        }
+        .blog-search-hero form {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 0.5rem;
+        }
+        .bsh-icon {
+            font-size: 0.95rem;
+            opacity: 0.55;
+            flex-shrink: 0;
+        }
+        .blog-search-hero input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0.85rem 0.7rem;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-family: inherit;
+            min-width: 0;
+        }
+        .blog-search-hero input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        /* ─── SEARCH BUTTON ─── */
+        .bsh-submit {
+            flex-shrink: 0;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+        .bsh-submit:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.03);
+        }
+
+        .bsh-clear {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--color-primary-light);
+            color: var(--color-primary-dark);
+            font-size: 0.8rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+            transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        }
+        .bsh-clear.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        .bsh-clear:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        /* ─── MOBILE OVERLAY (preserved) ─── */
         @media (max-width: 768px) {
-            .header .nav-actions {
-                display: none !important;
-            }
-
-            /* Make sure the nav overlay is full-screen and well-spaced */
+            .header .nav-actions { display: none !important; }
             .nav.open {
                 display: flex !important;
                 flex-direction: column;
@@ -72,17 +164,14 @@
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100dvh;
+                top: 0; left: 0;
+                width: 100%; height: 100dvh;
                 z-index: 1002;
                 border-radius: 0;
                 box-shadow: none;
                 animation: fadeIn 0.3s ease;
                 overflow-y: auto;
             }
-
             .nav a {
                 font-size: 1.4rem;
                 padding: 0.7rem 1.5rem;
@@ -93,18 +182,12 @@
                 text-align: center;
                 font-weight: 500;
             }
-
             .nav a.active {
                 background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
                 color: #fff;
                 box-shadow: 0 4px 14px -4px rgba(15, 107, 107, 0.5);
             }
-
-            .nav a:not(.active):hover {
-                background: var(--color-primary-light);
-            }
-
-            /* nav-actions inside the mobile overlay */
+            .nav a:not(.active):hover { background: var(--color-primary-light); }
             .nav .nav-actions {
                 display: flex !important;
                 flex-direction: column;
@@ -116,7 +199,6 @@
                 padding-top: 0.8rem;
                 flex-shrink: 0;
             }
-
             .nav .nav-actions .btn {
                 width: 100%;
                 justify-content: center;
@@ -124,23 +206,14 @@
                 font-size: 0.95rem;
                 border-radius: 50px;
             }
-
-            .nav .nav-actions .btn-primary {
-                padding: 0.75rem 0.75rem 0.75rem 1.5rem;
-            }
-
+            .nav .nav-actions .btn-primary { padding: 0.75rem 0.75rem 0.75rem 1.5rem; }
             .nav .nav-actions .btn-primary .btn-icon-arrow {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
+                width: 30px; height: 30px; font-size: 0.9rem;
             }
-
-            /* Hamburger stays visible and properly positioned */
             .hamburger {
                 display: flex !important;
                 z-index: 1005;
-                width: 36px;
-                height: 36px;
+                width: 36px; height: 36px;
                 position: relative;
                 padding: 0;
                 justify-content: center;
@@ -151,33 +224,20 @@
                 border: none;
                 margin-left: auto;
             }
-
             .hamburger span {
                 position: absolute;
                 left: 50%;
-                width: 24px;
-                height: 2px;
+                width: 24px; height: 2px;
                 background: var(--color-text);
                 border-radius: 2px;
                 transition: all 0.3s ease;
             }
-            .hamburger span:nth-child(1) {
-                top: 8px;
-                transform: translateX(-50%);
-            }
-            .hamburger span:nth-child(2) {
-                top: 50%;
-                transform: translateX(-50%) translateY(-50%);
-            }
-            .hamburger span:nth-child(3) {
-                bottom: 8px;
-                transform: translateX(-50%);
-            }
-
+            .hamburger span:nth-child(1) { top: 8px; transform: translateX(-50%); }
+            .hamburger span:nth-child(2) { top: 50%; transform: translateX(-50%) translateY(-50%); }
+            .hamburger span:nth-child(3) { bottom: 8px; transform: translateX(-50%); }
             .hamburger.open {
                 position: fixed;
-                right: 20px;
-                top: 18px;
+                right: 20px; top: 18px;
                 z-index: 1005;
             }
             .hamburger.open span:nth-child(1) {
@@ -193,15 +253,12 @@
                 bottom: auto;
                 transform: translate(-50%, -50%) rotate(-45deg);
             }
-
-            /* Header itself on mobile: logo + hamburger only */
             .header {
                 height: 66px;
                 background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(14px) saturate(160%);
                 -webkit-backdrop-filter: blur(14px) saturate(160%);
             }
-
             .header-inner {
                 padding: 0 16px;
                 display: flex;
@@ -210,72 +267,31 @@
                 width: 100%;
                 height: 100%;
             }
-
-            .logo-wrapper {
-                width: 110px;
-                height: 50px;
-                flex-shrink: 0;
-            }
-
-            /* Prevent body scroll when menu is open */
             body.menu-open {
                 overflow: hidden;
                 position: fixed;
                 width: 100%;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
+                top: 0; left: 0; right: 0; bottom: 0;
             }
         }
-
-        /* Very small screens: tighter spacing */
         @media (max-width: 480px) {
-            .nav.open {
-                padding: 3rem 1rem 2rem;
-                gap: 0.4rem;
-            }
-            .nav a {
-                font-size: 1.2rem;
-                padding: 0.6rem 1.2rem;
-                max-width: 260px;
-            }
-            .nav .nav-actions {
-                max-width: 260px;
-            }
-            .nav .nav-actions .btn {
-                font-size: 0.85rem;
-                padding: 0.6rem 1.2rem;
-            }
-            .logo-wrapper {
-                width: 90px;
-                height: 42px;
-            }
-            .hamburger {
-                width: 30px;
-                height: 30px;
-            }
-            .hamburger span {
-                width: 20px;
-                height: 2px;
-            }
-            .hamburger span:nth-child(1) {
-                top: 6px;
-            }
-            .hamburger span:nth-child(3) {
-                bottom: 6px;
-            }
+            .nav.open { padding: 3rem 1rem 2rem; gap: 0.4rem; }
+            .nav a { font-size: 1.2rem; padding: 0.6rem 1.2rem; max-width: 260px; }
+            .nav .nav-actions { max-width: 260px; }
+            .nav .nav-actions .btn { font-size: 0.85rem; padding: 0.6rem 1.2rem; }
+            .hamburger { width: 30px; height: 30px; }
+            .hamburger span { width: 20px; height: 2px; }
+            .hamburger span:nth-child(1) { top: 6px; }
+            .hamburger span:nth-child(3) { bottom: 6px; }
+            .bsh-submit { font-size: 0.7rem; padding: 0.35rem 0.8rem; }
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.97);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes blogFadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -298,15 +314,12 @@
             <a href="index.html" class="logo-wrapper">
                 <img src="logo-removebg-preview.webp" alt="Stackly" class="nav-logo-mask" />
             </a>
-
             <nav class="nav" id="nav">
                 <a href="index.html"><span class="nav-icon">⌂</span> Home</a>
                 <a href="about.html"><span class="nav-icon">◌</span> About</a>
                 <a href="research.html"><span class="nav-icon">◈</span> Research</a>
                 <a href="blog.html" class="active"><span class="nav-icon">📰</span> Blog</a>
                 <a href="contact.html"><span class="nav-icon">💬</span> Contact</a>
-
-                <!-- nav-actions moved inside nav for mobile overlay -->
                 <div class="nav-actions">
                     <a href="login.html" class="btn btn-outline">LOGIN</a>
                     <a href="contact.html" class="btn btn-primary">
@@ -315,54 +328,61 @@
                     </a>
                 </div>
             </nav>
-
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
-<!-- ─── TICKER ─── -->
-<div class="ticker-wrap">
-    <div class="container" style="max-width:100%; padding:0 24px; overflow:hidden;">
-        <div class="ticker-inner">
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
-            <!-- Duplicate for seamless loop -->
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+
+    <!-- ─── TICKER ─── -->
+    <div class="ticker-wrap">
+        <div class="container" style="max-width:100%; padding:0 24px; overflow:hidden;">
+            <div class="ticker-inner">
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- ════════════════════════════════════════════
-         SECTION 1 — HERO
-         Headline + live search + stat counters
+         SECTION 1 — HERO (search with visible button)
     ════════════════════════════════════════════ -->
     <section class="blog-hero">
         <div class="blog-hero-bg" aria-hidden="true"></div>
         <div class="blog-hero-glow" aria-hidden="true"></div>
         <div class="container blog-hero-inner">
 
-            <!-- ── LEFT CONTENT ── -->
             <div class="blog-hero-left fade-in-up">
                 <span class="blog-tag"><span class="blog-tag-dot"></span> RESEARCH NOTES</span>
                 <h1>Ideas in progress, <span>written down</span> before they're finished.</h1>
                 <p>Field notes, failed experiments, and early results from inside the network — published as we learn, not after the fact.</p>
 
+                <!-- ─── SEARCH FORM – with visible button → 404.html ─── -->
                 <div class="blog-search-hero">
-                    <span class="bsh-icon">🔍</span>
-                    <input type="text" id="blogSearchInput" placeholder="Search articles, authors, topics…" autocomplete="off" />
-                    <button type="button" id="bsClear" class="bsh-clear" aria-label="Clear search">✕</button>
+                    <form action="404.html" method="get" id="blogSearchForm">
+                        <span class="bsh-icon">🔍</span>
+                        <input
+                            type="text"
+                            name="q"
+                            id="blogSearchInput"
+                            placeholder="Search articles, authors, topics…"
+                            autocomplete="off"
+                        />
+                        <button type="button" id="bsClear" class="bsh-clear" aria-label="Clear search">✕</button>
+                        <button type="submit" class="bsh-submit">Search</button>
+                    </form>
                 </div>
 
                 <div class="bhs-row">
@@ -388,7 +408,6 @@
                 </div>
             </div>
 
-            <!-- ── RIGHT SIDE PANEL ── -->
             <div class="blog-hero-right fade-in-up" data-delay="150">
                 <div class="blog-side-panel">
                     <div class="bsp-photo-wrap">
@@ -429,8 +448,6 @@
 
     <!-- ════════════════════════════════════════════
          SECTION 2 — TOPIC TILES
-         Visual icon-tile grid, distinct from the article
-         card grid below. Clicking scrolls + filters.
     ════════════════════════════════════════════ -->
     <section class="section section-alt topic-zone">
         <div class="container">
@@ -439,7 +456,6 @@
                 <h2>Pick a thread, pull on it.</h2>
                 <p>Every article is tagged to one of seven active research beats. Jump straight to what you're chasing.</p>
             </div>
-
             <div class="topic-grid">
                 <button class="topic-tile reveal" data-anim="up" data-delay="0" data-filter="health">
                     <span class="tt-icon">🧬</span>
@@ -476,9 +492,7 @@
     </section>
 
     <!-- ════════════════════════════════════════════
-         SECTION 3 — FEATURED SPOTLIGHT
-         Single large editor's-pick layout — image/text
-         split, distinct from the card grid below.
+         SECTION 3 — FEATURED SPOTLIGHT (author text white)
     ════════════════════════════════════════════ -->
     <section class="section featured-zone">
         <div class="container">
@@ -507,8 +521,6 @@
 
     <!-- ════════════════════════════════════════════
          SECTION 4 — ARTICLE GRID
-         Search + filter toolbar + the required
-         #blogCardsGrid wired to blog.js
     ════════════════════════════════════════════ -->
     <section class="section section-alt" id="blogGrid">
         <div class="container">
@@ -532,8 +544,7 @@
             </div>
 
             <div class="blog-grid" id="blogCardsGrid">
-
-                <article class="blog-card reveal" data-anim="up" data-delay="0" data-domain="health" data-search="crispr gene editing clinical trial">
+                <article class="blog-card reveal" data-anim="up" data-delay="0" data-domain="health">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
                         <span class="bc-date">Jun 18, 2026</span>
@@ -546,7 +557,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="60" data-domain="space" data-search="exoplanet jwst biosignature telescope">
+                <article class="blog-card reveal" data-anim="up" data-delay="60" data-domain="space">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-space">🚀 Space</span>
                         <span class="bc-date">Jun 15, 2026</span>
@@ -559,7 +570,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="120" data-domain="climate" data-search="ocean carbon sink ipcc model saturation">
+                <article class="blog-card reveal" data-anim="up" data-delay="120" data-domain="climate">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-climate">🌍 Climate</span>
                         <span class="bc-date">Jun 14, 2026</span>
@@ -572,7 +583,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="180" data-domain="energy" data-search="solid state battery energy density wh/kg">
+                <article class="blog-card reveal" data-anim="up" data-delay="180" data-domain="energy">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-energy">⚡ Energy</span>
                         <span class="bc-date">Jun 11, 2026</span>
@@ -585,7 +596,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="240" data-domain="robotics" data-search="swarm robotics darpa disaster response autonomy">
+                <article class="blog-card reveal" data-anim="up" data-delay="240" data-domain="robotics">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-robotics">🤖 Robotics &amp; AI</span>
                         <span class="bc-date">Jun 9, 2026</span>
@@ -598,7 +609,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="300" data-domain="biotech" data-search="foundation model hypothesis generation ai research">
+                <article class="blog-card reveal" data-anim="up" data-delay="300" data-domain="biotech">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-biotech">🧪 Biotech</span>
                         <span class="bc-date">Jun 6, 2026</span>
@@ -611,7 +622,7 @@
                     </div>
                 </article>
 
-                <article class="blog-card reveal" data-anim="up" data-delay="360" data-domain="health" data-search="gut microbiome longevity cohort study">
+                <article class="blog-card reveal" data-anim="up" data-delay="360" data-domain="health">
                     <div class="bc-top">
                         <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
                         <span class="bc-date">Jun 3, 2026</span>
@@ -623,7 +634,6 @@
                         <span class="bc-readtime">5 min read</span>
                     </div>
                 </article>
-
             </div>
 
             <p class="blog-empty" id="blogEmpty">No articles match your search. Try a different term or clear the filter.</p>
@@ -636,7 +646,6 @@
 
     <!-- ════════════════════════════════════════════
          SECTION 5 — NEWSLETTER CTA
-         Closing band, distinct visual treatment
     ════════════════════════════════════════════ -->
     <section class="blog-cta-zone">
         <div class="container">
@@ -659,14 +668,12 @@
     <!-- ─── FOOTER ─── -->
     <footer class="footer" id="footer">
         <div class="container">
-
             <div class="newsletter-pill-wrap">
                 <form class="newsletter-pill-form fade-in-up" action="404.html">
                     <input type="email" placeholder="Enter email address" required />
                     <button type="submit">SUBSCRIBE</button>
                 </form>
             </div>
-
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo-wrapper">
@@ -676,7 +683,6 @@
                     <p class="footer-contact-info">📞 +1 (617) 555-0199</p>
                     <p class="footer-contact-info">📧 research@stackly.org</p>
                 </div>
-
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -687,7 +693,6 @@
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Research Areas</h4>
                     <ul>
@@ -699,7 +704,6 @@
                         <li><a href="research.html">Robotics &amp; AI</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Information</h4>
                     <ul>
@@ -710,22 +714,21 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p class="copyright-text">© 2026 Stackly, All Rights Reserved, Created by Stackly™</p>
                 <div class="footer-bottom-right">
                     <div class="footer-bottom-socials">
                         <a href="404.html" class="social-icon" aria-label="Twitter/X">𝕏</a>
-                       <a href="404.html" class="social-icon" aria-label="Instagram">
+                        <a href="404.html" class="social-icon" aria-label="Instagram">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                         </a>
                         <a href="404.html" class="social-icon" aria-label="LinkedIn">in</a>
                         <a href="404.html" class="social-icon" aria-label="Facebook">f</a>
                     </div>
-                   <form class="search-box" action="404.html" method="get">
-    <input type="text" name="q" placeholder="Type here to search" required />
-    <button type="submit" aria-label="Search">🔍</button>
-</form>
+                    <form class="search-box" action="404.html" method="get">
+                        <input type="text" name="q" placeholder="Type here to search" required />
+                        <button type="submit" aria-label="Search">🔍</button>
+                    </form>
                 </div>
             </div>
         </div>
