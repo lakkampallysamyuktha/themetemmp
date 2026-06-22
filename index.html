@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
         /* ════════════════════════════════════════════════════════
-           LOGO SIZE INCREASES – desktop → tablet → mobile
+           LOGO SIZE INCREASES – header + footer (desktop → tablet → mobile)
         ════════════════════════════════════════════════════════ */
 
         /* ─── Desktop header logo ─── */
@@ -18,26 +18,26 @@
             flex-shrink: 0;
         }
 
-        /* ─── Desktop footer logo ─── */
+        /* ─── Desktop footer logo – BIGGER ─── */
         .footer-logo-wrapper {
-            width: 180px;
-            height: 82px;
+            width: 200px;
+            height: 92px;
             flex-shrink: 0;
             margin-bottom: 1.2rem;
         }
 
-        /* ─── TABLET (≤768px) – logos get bigger ─── */
+        /* ─── TABLET (≤768px) ─── */
         @media (max-width: 768px) {
             .logo-wrapper {
                 width: 140px;
                 height: 64px;
             }
             .footer-logo-wrapper {
-                width: 140px;
-                height: 64px;
+                width: 160px;
+                height: 74px;
             }
 
-            /* Mobile menu overlay (preserved from original) */
+            /* ─── Mobile menu overlay (preserved) ─── */
             .header .nav-actions {
                 display: none !important;
             }
@@ -186,15 +186,15 @@
             }
         }
 
-        /* ─── MOBILE PHONE (≤480px) – even bigger logos ─── */
+        /* ─── MOBILE PHONE (≤480px) ─── */
         @media (max-width: 480px) {
             .logo-wrapper {
                 width: 120px;
                 height: 56px;
             }
             .footer-logo-wrapper {
-                width: 120px;
-                height: 56px;
+                width: 140px;
+                height: 64px;
             }
 
             .nav.open {
