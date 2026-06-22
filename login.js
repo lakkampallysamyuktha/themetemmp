@@ -26,8 +26,10 @@ const pwIcon = document.getElementById('pwIcon');
 if (togglePw) {
   togglePw.addEventListener('click', () => {
     const isText = pwInput.type === 'text';
+    // Toggle the input type
     pwInput.type = isText ? 'password' : 'text';
-    pwIcon.className = isText ? 'ph ph-eye' : 'ph ph-eye-slash';
+    // Set icon: when hidden (password) -> eye (open), when visible (text) -> eye-slash
+    pwIcon.className = isText ? 'ph ph-eye-slash' : 'ph ph-eye';
   });
 }
 
