@@ -128,7 +128,7 @@ body::before {
   box-shadow: 0 0 0 3px rgba(15, 107, 107, 0.2);
 }
 
-/* ─── COMPLETE FIX: Hide browser's default password reveal icon ─── */
+/* ─── COMPREHENSIVE BROWSER DEFAULT PASSWORD REVEAL HIDE ─── */
 /* Chrome, Edge, Safari */
 input[type="password"]::-webkit-credentials-auto-fill-button,
 input[type="password"]::-webkit-textfield-decoration-container,
@@ -141,23 +141,21 @@ input[type="password"]::-webkit-reveal {
 input[type="password"]::-moz-reveal {
   display: none !important;
 }
-/* Internet Explorer / Edge (legacy) */
+/* IE/Edge (legacy) */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none !important;
 }
-/* Ensure no extra space or icon appears */
+/* Fallback: ensure no extra space */
 input[type="password"] {
   -webkit-text-security: disc;
 }
 
-/* ─── CUSTOM TOGGLE – correctly positioned ─── */
+/* ─── CUSTOM TOGGLE – only one eye remains ─── */
 .toggle-pw {
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
+  background: none;
   border: none;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
@@ -169,12 +167,10 @@ input[type="password"] {
   padding: 4px;
   width: 32px;
   height: 32px;
-  z-index: 2;
   border-radius: 0;
+  z-index: 2;
 }
-.toggle-pw:hover {
-  color: var(--color-primary);
-}
+.toggle-pw:hover { color: var(--color-primary); }
 .toggle-pw i {
   font-size: 1rem;
   pointer-events: none;
