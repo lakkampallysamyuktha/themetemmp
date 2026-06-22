@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog — Stackly Research Notes</title>
+    <title>Research — Stackly Research Center</title>
     <link rel="stylesheet" href="home.css" />
-    <link rel="stylesheet" href="blog.css" />
+    <link rel="stylesheet" href="research.css" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
         /* ════════════════════════════════════════════════════════
@@ -277,9 +277,27 @@
                 transform: scale(1);
             }
         }
+
+        .lab-hero {
+            padding: 60px 0 64px;
+        }
+        .lab-console {
+            margin: 0 auto;
+        }
+        @media (max-width: 1024px) {
+            .lab-hero { padding: 150px 0 56px; }
+        }
+        @media (max-width: 768px) {
+            .lab-hero { padding: 140px 0 48px; }
+        }
+        @media (max-width: 480px) {
+            .lab-hero { padding: 130px 0 40px; }
+        }
     </style>
 </head>
 <body>
+
+    <div id="particles-js"></div>
 
     <!-- ─── TOP BAR ─── -->
     <div class="top-bar">
@@ -298,12 +316,11 @@
             <a href="index.html" class="logo-wrapper">
                 <img src="logo-removebg-preview.webp" alt="Stackly" class="nav-logo-mask" />
             </a>
-
             <nav class="nav" id="nav">
                 <a href="index.html"><span class="nav-icon">⌂</span> Home</a>
                 <a href="about.html"><span class="nav-icon">◌</span> About</a>
-                <a href="research.html"><span class="nav-icon">◈</span> Research</a>
-                <a href="blog.html" class="active"><span class="nav-icon">📰</span> Blog</a>
+                <a href="research.html" class="active"><span class="nav-icon">◈</span> Research</a>
+                <a href="blog.html"><span class="nav-icon">📰</span> Blog</a>
                 <a href="contact.html"><span class="nav-icon">💬</span> Contact</a>
 
                 <!-- nav-actions moved inside nav for mobile overlay -->
@@ -321,337 +338,347 @@
             </button>
         </div>
     </header>
-<!-- ─── TICKER ─── -->
-<div class="ticker-wrap">
-    <div class="container" style="max-width:100%; padding:0 24px; overflow:hidden;">
-        <div class="ticker-inner">
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
-            <!-- Duplicate for seamless loop -->
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
-            <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+
+    <!-- ─── TICKER ─── -->
+    <div class="ticker-wrap">
+        <div class="container" style="max-width:100%; padding:0 24px; overflow:hidden;">
+            <div class="ticker-inner">
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧬 CRISPR Prime Editing achieves 99.1% on-target accuracy</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🚀 Exoplanet biosignature detected with JWST NIRSpec</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🌍 Ocean carbon sink saturating 40% faster than IPCC models</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> ⚡ Solid-state battery reaches 500 Wh/kg energy density</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🤖 Swarm robotics for disaster response — DARPA-funded</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🧠 Foundation models as co-investigators in hypothesis generation</span>
+                <span class="ticker-item"><span class="ticker-dot"></span> 🔬 42+ research labs across 18 countries</span>
+            </div>
         </div>
     </div>
-</div>
 
-    <!-- ════════════════════════════════════════════
-         SECTION 1 — HERO
-         Headline + live search + stat counters
-    ════════════════════════════════════════════ -->
-    <section class="blog-hero">
-        <div class="blog-hero-bg" aria-hidden="true"></div>
-        <div class="blog-hero-glow" aria-hidden="true"></div>
-        <div class="container blog-hero-inner">
-
-            <!-- ── LEFT CONTENT ── -->
-            <div class="blog-hero-left fade-in-up">
-                <span class="blog-tag"><span class="blog-tag-dot"></span> RESEARCH NOTES</span>
-                <h1>Ideas in progress, <span>written down</span> before they're finished.</h1>
-                <p>Field notes, failed experiments, and early results from inside the network — published as we learn, not after the fact.</p>
-
-                <div class="blog-search-hero">
-                    <span class="bsh-icon">🔍</span>
-                    <input type="text" id="blogSearchInput" placeholder="Search articles, authors, topics…" autocomplete="off" />
-                    <button type="button" id="bsClear" class="bsh-clear" aria-label="Clear search">✕</button>
-                </div>
-
-                <div class="bhs-row">
-                    <div class="bhs-item">
-                        <strong><span class="bhs-num" data-target="214" data-format="abbr">0</span><span class="bhs-plus">+</span></strong>
-                        <span>Articles published</span>
-                    </div>
-                    <div class="bhs-divider"></div>
-                    <div class="bhs-item">
-                        <strong><span class="bhs-num" data-target="38000" data-format="abbr">0</span></strong>
-                        <span>Monthly readers</span>
-                    </div>
-                    <div class="bhs-divider"></div>
-                    <div class="bhs-item">
-                        <strong><span class="bhs-num" data-target="7">0</span></strong>
-                        <span>Active beats</span>
-                    </div>
-                    <div class="bhs-divider"></div>
-                    <div class="bhs-item">
-                        <strong><span class="bhs-num" data-target="52">0</span></strong>
-                        <span>Contributing researchers</span>
-                    </div>
+    <!-- ─── LAB CONSOLE HERO ─── -->
+    <section class="lab-hero">
+        <div class="lab-hero-glow" aria-hidden="true"></div>
+        <div class="container lab-hero-inner">
+            <div class="fade-in-up">
+                <span class="lab-tag"><span class="lab-tag-dot"></span> LIVE RESEARCH FEED</span>
+                <h1>Inside the <span>labs</span> — what's running right now.</h1>
+                <p>Seven domains, 42 labs, one open ledger. Browse the studies in motion, the instruments behind them, and the funding that keeps them moving.</p>
+                <div class="lab-hero-actions">
+                    <a href="404.html" class="btn btn-primary hero-btn">Browse Publications →</a>
+                    <a href="404.html" class="lab-link-ghost">See the lab benches <span>↓</span></a>
                 </div>
             </div>
 
-            <!-- ── RIGHT SIDE PANEL ── -->
-            <div class="blog-hero-right fade-in-up" data-delay="150">
-                <div class="blog-side-panel">
-                    <div class="bsp-photo-wrap">
-                        <img src="index13re.webp"
-                             alt="Stackly research notes"
-                             onerror="this.src='https://placehold.co/620x380/0f6b6b/ffffff?text=Research+Notes'" />
-                        <div class="bsp-photo-overlay">
-                            <span>Published as we learn.</span>
-                        </div>
+            <div class="lab-console fade-in-up" data-delay="150">
+                <div class="lab-console-head">
+                    <span>study-feed.log</span>
+                    <div class="lab-console-dots"><span></span><span></span><span></span></div>
+                </div>
+                <div class="lab-console-body" id="labFeed">
+                    <div class="lab-feed-row" style="animation-delay:0.05s">
+                        <span class="lab-feed-tag lft-active">Active</span>
+                        <span>Prime-editing trial crosses Phase II enrollment in Boston cohort.</span>
                     </div>
-                    <div class="bsp-panel-head">
-                        <span>BLOG STATS</span>
-                        <span class="bsp-pulse"></span>
+                    <div class="lab-feed-row" style="animation-delay:0.15s">
+                        <span class="lab-feed-tag lft-review">Review</span>
+                        <span>Exoplanet spectroscopy dataset submitted to Nature Astronomy.</span>
                     </div>
-                    <div class="bsp-rows">
-                        <div class="bsp-row">
-                            <span class="bsp-label">Articles published</span>
-                            <span class="bsp-val bhs-num" data-target="214" data-format="abbr">0</span>
+                    <div class="lab-feed-row" style="animation-delay:0.25s">
+                        <span class="lab-feed-tag lft-active">Active</span>
+                        <span>Solid-state cell hits 480 Wh/kg in cycle-life testing, week 9.</span>
+                    </div>
+                    <div class="lab-feed-row" style="animation-delay:0.35s">
+                        <span class="lab-feed-tag lft-done">Closed</span>
+                        <span>Ocean carbon sink model published, cited 14 times in 30 days.</span>
+                    </div>
+                    <div class="lab-console-foot">
+                        <div class="lcf-metric">
+                            <strong><span class="lcf-tick" id="metricStudies" data-target="23" data-suffix="">0</span></strong>
+                            <span><span class="lcf-live-dot"></span> STUDIES IN MOTION</span>
                         </div>
-                        <div class="bsp-row">
-                            <span class="bsp-label">Monthly readers</span>
-                            <span class="bsp-val bhs-num" data-target="38000" data-format="abbr">0</span>
-                        </div>
-                        <div class="bsp-row">
-                            <span class="bsp-label">Active beats</span>
-                            <span class="bsp-val bhs-num" data-target="7">0</span>
-                        </div>
-                        <div class="bsp-row">
-                            <span class="bsp-label">Contributors</span>
-                            <span class="bsp-val bhs-num" data-target="52">0</span>
+                        <div class="lcf-metric">
+                            <strong>$<span class="lcf-tick" id="metricFunding" data-target="18.4" data-decimals="1" data-suffix="M">0</span></strong>
+                            <span><span class="lcf-live-dot"></span> ACTIVE FUNDING</span>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
-         SECTION 2 — TOPIC TILES
-         Visual icon-tile grid, distinct from the article
-         card grid below. Clicking scrolls + filters.
-    ════════════════════════════════════════════ -->
-    <section class="section section-alt topic-zone">
+    <!-- ─── PUBLICATIONS — SEARCH & FILTER ─── -->
+    <section class="section section-light" id="publications">
         <div class="container">
             <div class="section-header reveal" data-anim="up">
-                <span class="eyebrow">Browse by Beat</span>
-                <h2>Pick a thread, pull on it.</h2>
-                <p>Every article is tagged to one of seven active research beats. Jump straight to what you're chasing.</p>
+                <span class="eyebrow">Publications</span>
+                <h2>Search the <span>Research Record</span></h2>
+                <p>Every peer-reviewed paper Stackly has co-authored in the last three years, filterable by domain.</p>
             </div>
 
-            <div class="topic-grid">
-                <button class="topic-tile reveal" data-anim="up" data-delay="0" data-filter="health">
-                    <span class="tt-icon">🧬</span>
-                    <span class="tt-name">Healthcare</span>
-                    <span class="tt-count">41 articles</span>
-                </button>
-                <button class="topic-tile reveal" data-anim="up" data-delay="60" data-filter="space">
-                    <span class="tt-icon">🚀</span>
-                    <span class="tt-name">Space</span>
-                    <span class="tt-count">29 articles</span>
-                </button>
-                <button class="topic-tile reveal" data-anim="up" data-delay="120" data-filter="climate">
-                    <span class="tt-icon">🌍</span>
-                    <span class="tt-name">Climate</span>
-                    <span class="tt-count">37 articles</span>
-                </button>
-                <button class="topic-tile reveal" data-anim="up" data-delay="180" data-filter="energy">
-                    <span class="tt-icon">⚡</span>
-                    <span class="tt-name">Energy</span>
-                    <span class="tt-count">24 articles</span>
-                </button>
-                <button class="topic-tile reveal" data-anim="up" data-delay="240" data-filter="robotics">
-                    <span class="tt-icon">🤖</span>
-                    <span class="tt-name">Robotics &amp; AI</span>
-                    <span class="tt-count">46 articles</span>
-                </button>
-                <button class="topic-tile reveal" data-anim="up" data-delay="300" data-filter="biotech">
-                    <span class="tt-icon">🧪</span>
-                    <span class="tt-name">Biotech</span>
-                    <span class="tt-count">37 articles</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
-         SECTION 3 — FEATURED SPOTLIGHT
-         Single large editor's-pick layout — image/text
-         split, distinct from the card grid below.
-    ════════════════════════════════════════════ -->
-    <section class="section featured-zone">
-        <div class="container">
-            <span class="eyebrow reveal" data-anim="up">Editor's Pick</span>
-            <div class="featured-split">
-                <div class="featured-media reveal" data-anim="left">
-                    <img src="blogresearch2.webp" alt="Researcher reviewing satellite climate data on a monitor" loading="lazy" />
-                    <span class="featured-media-tag">🌍 Climate</span>
+            <div class="pub-toolbar reveal" data-anim="up">
+                <div class="pub-search">
+                    <span class="pub-search-icon">🔍</span>
+                    <input type="text" id="pubSearchInput" placeholder="Search by title, author, or keyword…" />
                 </div>
-                <div class="featured-text reveal" data-anim="right" data-delay="120">
-                    <span class="featured-kicker">Long read · 12 min</span>
-                    <h2>The ocean isn't absorbing carbon the way the models said it would.</h2>
-                    <p>Three years of buoy data from the Pacific basin are forcing a quiet recalculation across half a dozen labs — and the gap is bigger than anyone published out loud.</p>
-                    <div class="featured-byline">
-                        <span class="featured-avatar">DR</span>
-                        <div>
-                            <strong>Dr. Naomi Reyes</strong>
-                            <span>Oceanography Lead · Published June 14, 2026</span>
-                        </div>
+                <span class="pub-count-pill" id="pubCountPill">12 papers</span>
+            </div>
+
+            <div class="pub-filters reveal" data-anim="up" id="pubFilters">
+                <button class="pub-chip active" data-filter="all">All Domains</button>
+                <button class="pub-chip" data-filter="health">Healthcare</button>
+                <button class="pub-chip" data-filter="space">Space</button>
+                <button class="pub-chip" data-filter="environment">Environment</button>
+                <button class="pub-chip" data-filter="energy">Energy</button>
+                <button class="pub-chip" data-filter="ai">AI &amp; Robotics</button>
+            </div>
+
+            <div class="pub-grid reveal" data-anim="up" id="pubGrid">
+                <article class="pub-card" data-domain="health" data-search="prime editing crispr genome accuracy kumar nature">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Healthcare</span>
+                        <span class="pub-year">2026</span>
                     </div>
-                    <a href="404.html" class="btn btn-primary">Read the Full Piece →</a>
+                    <h4>Prime Editing Achieves 99.1% On-Target Accuracy in Primary Cells</h4>
+                    <p>A refined CRISPR prime-editing protocol that sharply cuts off-target effects across five cell lines.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Nature Biotech</span>
+                        <span class="pub-cite">214 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="space" data-search="exoplanet biosignature jwst nirspec spectroscopy odonnell">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Space</span>
+                        <span class="pub-year">2026</span>
+                    </div>
+                    <h4>Biosignature Candidate Detected via JWST NIRSpec on K2-18b</h4>
+                    <p>Atmospheric chemistry readings consistent with biological process signatures, pending independent confirmation.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Astrophysical Journal</span>
+                        <span class="pub-cite">87 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="environment" data-search="ocean carbon sink ipcc climate model saturation">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Environment</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <h4>Ocean Carbon Sink Saturating Faster Than IPCC AR6 Projections</h4>
+                    <p>Buoy-network data shows Southern Ocean uptake slowing 40% ahead of consensus climate models.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Science</span>
+                        <span class="pub-cite">301 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="energy" data-search="solid state battery lithium sulfur ev range density">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Energy</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <h4>Solid-State Lithium-Sulfur Cells Reach 500 Wh/kg</h4>
+                    <p>A new electrolyte interface design doubling usable EV range without sacrificing cycle life.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Joule</span>
+                        <span class="pub-cite">156 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="ai" data-search="swarm robotics disaster response darpa coordination">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">AI &amp; Robotics</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <h4>Decentralized Swarm Coordination for Disaster-Zone Mapping</h4>
+                    <p>A DARPA-funded protocol letting 40+ low-cost robots map collapsed structures without central control.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Science Robotics</span>
+                        <span class="pub-cite">98 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="health" data-search="alzheimers parkinsons neurobiology stem cell ipsc mit">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Healthcare</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <h4>iPSC-Derived Neurons Reverse Markers of Early Parkinson's in Mouse Models</h4>
+                    <p>Regenerative therapy trial with MIT shows measurable dopaminergic recovery at 12-week follow-up.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Cell Stem Cell</span>
+                        <span class="pub-cite">178 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="ai" data-search="foundation models hypothesis generation co-investigator llm">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">AI &amp; Robotics</span>
+                        <span class="pub-year">2026</span>
+                    </div>
+                    <h4>Foundation Models as Hypothesis Co-Investigators: A Lab Trial</h4>
+                    <p>A six-month trial measuring how LLM-suggested hypotheses changed experiment design and yield across 4 labs.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Nature Methods</span>
+                        <span class="pub-cite">62 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="space" data-search="exoplanet atmosphere m-dwarf chemistry berkeley telescope">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Space</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <h4>Atmospheric Chemistry Survey of 14 M-Dwarf Exoplanet Systems</h4>
+                    <p>A comparative survey reshaping assumptions about habitability odds around red dwarf stars.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Astronomy &amp; Astrophysics</span>
+                        <span class="pub-cite">211 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="environment" data-search="reforestation carbon credit satellite verification">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Environment</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <h4>Satellite-Verified Carbon Credit Auditing at Continental Scale</h4>
+                    <p>A remote-sensing pipeline that cut reforestation credit fraud detection time from months to days.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Environmental Research Letters</span>
+                        <span class="pub-cite">74 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="energy" data-search="grid storage renewable forecasting demand ai">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Energy</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <h4>Demand-Side Forecasting Cuts Grid Storage Overbuild by 22%</h4>
+                    <p>A forecasting model now deployed across three regional grid operators in the Northeast.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Applied Energy</span>
+                        <span class="pub-cite">119 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="health" data-search="multi-omics personalized medicine regimen oncology biomarker">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">Healthcare</span>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <h4>Multi-Omics Integration Improves Oncology Regimen Matching by 31%</h4>
+                    <p>A patient-specific modeling pipeline now piloted across two partner oncology networks.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Nature Medicine</span>
+                        <span class="pub-cite">243 cites ↗</span>
+                    </div>
+                </article>
+
+                <article class="pub-card" data-domain="ai" data-search="traffic optimization iot sensor smart city boston">
+                    <div class="pub-card-top">
+                        <span class="pub-domain">AI &amp; Robotics</span>
+                        <span class="pub-year">2023</span>
+                    </div>
+                    <h4>Real-Time Traffic Optimization Cuts Commute Times 40% in Pilot City</h4>
+                    <p>An IoT-sensor-driven flow model deployed across 120 intersections in partnership with the City of Boston.</p>
+                    <div class="pub-card-foot">
+                        <span class="pub-journal">Transportation Research</span>
+                        <span class="pub-cite">133 cites ↗</span>
+                    </div>
+                </article>
+
+                <div class="pub-empty" id="pubEmpty" style="display:none;">
+                    <span>🔬</span>
+                    No publications match that search. Try a different keyword or domain.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
-         SECTION 4 — ARTICLE GRID
-         Search + filter toolbar + the required
-         #blogCardsGrid wired to blog.js
-    ════════════════════════════════════════════ -->
-    <section class="section section-alt" id="blogGrid">
+   
+
+    <!-- ─── FUNDING LEDGER ─── -->
+    <section class="section section-light" id="funding">
         <div class="container">
             <div class="section-header reveal" data-anim="up">
-                <span class="eyebrow">All Articles</span>
-                <h2>Every dispatch, searchable.</h2>
-                <p>Filter by beat or search across titles, authors, and topics.</p>
+                <span class="eyebrow">Transparency</span>
+                <h2>Open Funding <span>Ledger</span></h2>
+                <p>Every active grant, who it's from, and what stage the work tied to it is in.</p>
             </div>
 
-            <div class="blog-toolbar reveal" data-anim="up" data-delay="80">
-                <div class="blog-filters" id="blogFilters">
-                    <button class="blog-chip active" data-filter="all">All</button>
-                    <button class="blog-chip" data-filter="health">Healthcare</button>
-                    <button class="blog-chip" data-filter="space">Space</button>
-                    <button class="blog-chip" data-filter="climate">Climate</button>
-                    <button class="blog-chip" data-filter="energy">Energy</button>
-                    <button class="blog-chip" data-filter="robotics">Robotics &amp; AI</button>
-                    <button class="blog-chip" data-filter="biotech">Biotech</button>
-                </div>
-                <span class="blog-count-pill" id="blogCountPill">7 articles</span>
-            </div>
-
-            <div class="blog-grid" id="blogCardsGrid">
-
-                <article class="blog-card reveal" data-anim="up" data-delay="0" data-domain="health" data-search="crispr gene editing clinical trial">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
-                        <span class="bc-date">Jun 18, 2026</span>
-                    </div>
-                    <h4 class="bc-title">Inside the first human trial of in-vivo Prime Editing</h4>
-                    <p class="bc-excerpt">Patient-zero data from the liver-disease cohort suggests the correction holds past the 6-month mark — earlier than the team expected.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Dr. Amara Osei</span>
-                        <span class="bc-readtime">7 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="60" data-domain="space" data-search="exoplanet jwst biosignature telescope">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-space">🚀 Space</span>
-                        <span class="bc-date">Jun 15, 2026</span>
-                    </div>
-                    <h4 class="bc-title">What a single methane spike on K2-18b actually tells us</h4>
-                    <p class="bc-excerpt">Not life — not yet. But the spectral signature ruled out three abiotic explanations the team had bet on.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Priya Chandrasekar</span>
-                        <span class="bc-readtime">9 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="120" data-domain="climate" data-search="ocean carbon sink ipcc model saturation">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-climate">🌍 Climate</span>
-                        <span class="bc-date">Jun 14, 2026</span>
-                    </div>
-                    <h4 class="bc-title">The ocean isn't absorbing carbon the way the models said</h4>
-                    <p class="bc-excerpt">Three years of Pacific buoy data are forcing a quiet recalculation across half a dozen labs.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Dr. Naomi Reyes</span>
-                        <span class="bc-readtime">12 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="180" data-domain="energy" data-search="solid state battery energy density wh/kg">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-energy">⚡ Energy</span>
-                        <span class="bc-date">Jun 11, 2026</span>
-                    </div>
-                    <h4 class="bc-title">500 Wh/kg, and why that number almost wasn't real</h4>
-                    <p class="bc-excerpt">A look inside the solid-state cell that beat its own spec sheet twice during testing — and the failure that nearly buried it.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Marcus Lindqvist</span>
-                        <span class="bc-readtime">6 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="240" data-domain="robotics" data-search="swarm robotics darpa disaster response autonomy">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-robotics">🤖 Robotics &amp; AI</span>
-                        <span class="bc-date">Jun 9, 2026</span>
-                    </div>
-                    <h4 class="bc-title">We sent forty robots into a collapsed structure. Six came back useful.</h4>
-                    <p class="bc-excerpt">Lessons from the DARPA-funded swarm trial, and why "more units" turned out to be the wrong instinct.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Dr. Felix Tran</span>
-                        <span class="bc-readtime">8 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="300" data-domain="biotech" data-search="foundation model hypothesis generation ai research">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-biotech">🧪 Biotech</span>
-                        <span class="bc-date">Jun 6, 2026</span>
-                    </div>
-                    <h4 class="bc-title">We let a foundation model propose its own experiments</h4>
-                    <p class="bc-excerpt">It suggested 40 hypotheses. We ran the 6 that were actually testable. One of them held up.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Sofia Marchetti</span>
-                        <span class="bc-readtime">10 min read</span>
-                    </div>
-                </article>
-
-                <article class="blog-card reveal" data-anim="up" data-delay="360" data-domain="health" data-search="gut microbiome longevity cohort study">
-                    <div class="bc-top">
-                        <span class="bc-domain bc-domain-health">🧬 Healthcare</span>
-                        <span class="bc-date">Jun 3, 2026</span>
-                    </div>
-                    <h4 class="bc-title">A decade-long gut-microbiome cohort just hit its first real signal</h4>
-                    <p class="bc-excerpt">Ten years of stool samples from 1,200 volunteers finally produced something worth publishing.</p>
-                    <div class="bc-foot">
-                        <span class="bc-author">Dr. Amara Osei</span>
-                        <span class="bc-readtime">5 min read</span>
-                    </div>
-                </article>
-
-            </div>
-
-            <p class="blog-empty" id="blogEmpty">No articles match your search. Try a different term or clear the filter.</p>
-
-            <div class="blog-loadmore-wrap">
-                <button class="btn btn-outline" id="blogLoadMore">Load More Articles</button>
+            <div class="ledger-wrap reveal" data-anim="up">
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Funding Partner</th>
+                            <th>Status</th>
+                            <th style="text-align:right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="ledger-program">AI-Based Early Disease Detection<span class="ledger-sub">Healthcare · Clinical validation</span></span></td>
+                            <td>NIH</td>
+                            <td><span class="ledger-status ls-funded">● Funded</span></td>
+                            <td class="ledger-amount">$4.2M</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ledger-program">Exoplanet Biosignature Follow-Up<span class="ledger-sub">Space · Re-analysis &amp; ground observation</span></span></td>
+                            <td>NASA</td>
+                            <td><span class="ledger-status ls-funded">● Funded</span></td>
+                            <td class="ledger-amount">$2.6M</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ledger-program">Next-Gen Battery Storage<span class="ledger-sub">Energy · Cycle-life testing</span></span></td>
+                            <td>Dept. of Energy</td>
+                            <td><span class="ledger-status ls-funded">● Funded</span></td>
+                            <td class="ledger-amount">$3.8M</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ledger-program">Sepsis Biomarker Panel<span class="ledger-sub">Biotech · Planning</span></span></td>
+                            <td>FDA Innovation Fund</td>
+                            <td><span class="ledger-status ls-pending">● Pending</span></td>
+                            <td class="ledger-amount">$1.1M</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ledger-program">Swarm Robotics for Disaster Response<span class="ledger-sub">Robotics · Field trials</span></span></td>
+                            <td>DARPA</td>
+                            <td><span class="ledger-status ls-funded">● Funded</span></td>
+                            <td class="ledger-amount">$5.4M</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ledger-program">Satellite Carbon Credit Auditing<span class="ledger-sub">Environment · Continued deployment</span></span></td>
+                            <td>NOAA</td>
+                            <td><span class="ledger-status ls-pending">● Pending</span></td>
+                            <td class="ledger-amount">$1.3M</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
-         SECTION 5 — NEWSLETTER CTA
-         Closing band, distinct visual treatment
-    ════════════════════════════════════════════ -->
-    <section class="blog-cta-zone">
+    <!-- ─── COLLAB STRIP ─── -->
+    <section class="section section-alt">
         <div class="container">
-            <div class="blog-cta-card reveal" data-anim="scale">
-                <div class="blog-cta-orbits" aria-hidden="true">
-                    <span>🧬</span><span>🚀</span><span>🌍</span><span>⚡</span><span>🤖</span>
+            <div class="collab-strip reveal" data-anim="up">
+                <div class="collab-strip-text">
+                    <h3>Got a dataset, a question, or a lab bench?</h3>
+                    <p>We open a limited number of slots each quarter for outside researchers to run studies inside our network.</p>
                 </div>
-                <span class="eyebrow">Stay In The Loop</span>
-                <h2>One email, every other Friday.</h2>
-                <p>The pieces that mattered, the data that surprised us, and nothing you didn't ask for.</p>
-                <form class="blog-cta-form" action="404.html">
-                    <input type="email" placeholder="Enter your email address" required />
-                    <button type="submit">Subscribe →</button>
-                </form>
-                <span class="blog-cta-note">No spam. Unsubscribe anytime. ~38,000 researchers already reading.</span>
+                <div class="collab-strip-actions">
+                    <a href="contact.html" class="btn btn-primary">Propose a Study →</a>
+                    <a href="404.html" class="btn btn-outline">View Open Projects</a>
+                </div>
             </div>
         </div>
     </section>
@@ -734,7 +761,8 @@
     <!-- Back to top -->
     <a href="#" class="back-to-top-circle" aria-label="Back to top">↑</a>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="home.js"></script>
-    <script src="blog.js"></script>
+    <script src="research.js"></script>
 </body>
 </html>
