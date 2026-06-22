@@ -7,15 +7,40 @@
     <link rel="stylesheet" href="home.css" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* ─── ADDITIONAL MOBILE FIXES (keep desktop untouched) ─── */
+        /* ════════════════════════════════════════════════════════
+           LOGO SIZE INCREASES – desktop → tablet → mobile
+        ════════════════════════════════════════════════════════ */
 
-        /* Hide header nav-actions on mobile – they live inside the nav overlay now */
+        /* ─── Desktop header logo ─── */
+        .logo-wrapper {
+            width: 180px;
+            height: 82px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Desktop footer logo ─── */
+        .footer-logo-wrapper {
+            width: 180px;
+            height: 82px;
+            flex-shrink: 0;
+            margin-bottom: 1.2rem;
+        }
+
+        /* ─── TABLET (≤768px) – logos get bigger ─── */
         @media (max-width: 768px) {
+            .logo-wrapper {
+                width: 140px;
+                height: 64px;
+            }
+            .footer-logo-wrapper {
+                width: 140px;
+                height: 64px;
+            }
+
+            /* Mobile menu overlay (preserved from original) */
             .header .nav-actions {
                 display: none !important;
             }
-
-            /* Make sure the nav overlay is full-screen and well-spaced */
             .nav.open {
                 display: flex !important;
                 flex-direction: column;
@@ -37,7 +62,6 @@
                 animation: fadeIn 0.3s ease;
                 overflow-y: auto;
             }
-
             .nav a {
                 font-size: 1.4rem;
                 padding: 0.7rem 1.5rem;
@@ -48,18 +72,14 @@
                 text-align: center;
                 font-weight: 500;
             }
-
             .nav a.active {
                 background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
                 color: #fff;
                 box-shadow: 0 4px 14px -4px rgba(15, 107, 107, 0.5);
             }
-
             .nav a:not(.active):hover {
                 background: var(--color-primary-light);
             }
-
-            /* nav-actions inside the mobile overlay */
             .nav .nav-actions {
                 display: flex !important;
                 flex-direction: column;
@@ -71,7 +91,6 @@
                 padding-top: 0.8rem;
                 flex-shrink: 0;
             }
-
             .nav .nav-actions .btn {
                 width: 100%;
                 justify-content: center;
@@ -79,18 +98,14 @@
                 font-size: 0.95rem;
                 border-radius: 50px;
             }
-
             .nav .nav-actions .btn-primary {
                 padding: 0.75rem 0.75rem 0.75rem 1.5rem;
             }
-
             .nav .nav-actions .btn-primary .btn-icon-arrow {
                 width: 30px;
                 height: 30px;
                 font-size: 0.9rem;
             }
-
-            /* Hamburger stays visible and properly positioned */
             .hamburger {
                 display: flex !important;
                 z-index: 1005;
@@ -106,7 +121,6 @@
                 border: none;
                 margin-left: auto;
             }
-
             .hamburger span {
                 position: absolute;
                 left: 50%;
@@ -128,7 +142,6 @@
                 bottom: 8px;
                 transform: translateX(-50%);
             }
-
             .hamburger.open {
                 position: fixed;
                 right: 20px;
@@ -148,15 +161,12 @@
                 bottom: auto;
                 transform: translate(-50%, -50%) rotate(-45deg);
             }
-
-            /* Header itself on mobile: logo + hamburger only */
             .header {
                 height: 66px;
                 background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(14px) saturate(160%);
                 -webkit-backdrop-filter: blur(14px) saturate(160%);
             }
-
             .header-inner {
                 padding: 0 16px;
                 display: flex;
@@ -165,14 +175,6 @@
                 width: 100%;
                 height: 100%;
             }
-
-            .logo-wrapper {
-                width: 110px;
-                height: 50px;
-                flex-shrink: 0;
-            }
-
-            /* Prevent body scroll when menu is open */
             body.menu-open {
                 overflow: hidden;
                 position: fixed;
@@ -184,8 +186,17 @@
             }
         }
 
-        /* Very small screens: tighter spacing */
+        /* ─── MOBILE PHONE (≤480px) – even bigger logos ─── */
         @media (max-width: 480px) {
+            .logo-wrapper {
+                width: 120px;
+                height: 56px;
+            }
+            .footer-logo-wrapper {
+                width: 120px;
+                height: 56px;
+            }
+
             .nav.open {
                 padding: 3rem 1rem 2rem;
                 gap: 0.4rem;
@@ -201,10 +212,6 @@
             .nav .nav-actions .btn {
                 font-size: 0.85rem;
                 padding: 0.6rem 1.2rem;
-            }
-            .logo-wrapper {
-                width: 90px;
-                height: 42px;
             }
             .hamburger {
                 width: 30px;
@@ -223,14 +230,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.97);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -263,7 +264,6 @@
                 <a href="blog.html"><span class="nav-icon">📰</span> Blog</a>
                 <a href="contact.html"><span class="nav-icon">💬</span> Contact</a>
 
-                <!-- nav-actions moved INSIDE nav so they appear in the mobile overlay -->
                 <div class="nav-actions">
                     <a href="login.html" class="btn btn-outline">LOGIN</a>
                     <a href="contact.html" class="btn btn-primary">
@@ -361,48 +361,37 @@
                             <circle class="ring-bg" cx="70" cy="70" r="60"/>
                             <circle class="ring-fg" cx="70" cy="70" r="60"/>
                         </svg>
-                        <div class="stat-circle-number">
-                            42<span class="stat-plus">+</span>
-                        </div>
+                        <div class="stat-circle-number">42<span class="stat-plus">+</span></div>
                     </div>
                     <span class="stat-circle-label">Research Labs</span>
                 </div>
-
                 <div class="stat-circle-item reveal" data-anim="up" data-delay="100">
                     <div class="stat-circle-ring">
                         <svg viewBox="0 0 140 140">
                             <circle class="ring-bg" cx="70" cy="70" r="60"/>
                             <circle class="ring-fg" cx="70" cy="70" r="60"/>
                         </svg>
-                        <div class="stat-circle-number">
-                            1.2K<span class="stat-plus">+</span>
-                        </div>
+                        <div class="stat-circle-number">1.2K<span class="stat-plus">+</span></div>
                     </div>
                     <span class="stat-circle-label">Citations</span>
                 </div>
-
                 <div class="stat-circle-item reveal" data-anim="up" data-delay="200">
                     <div class="stat-circle-ring">
                         <svg viewBox="0 0 140 140">
                             <circle class="ring-bg" cx="70" cy="70" r="60"/>
                             <circle class="ring-fg" cx="70" cy="70" r="60"/>
                         </svg>
-                        <div class="stat-circle-number">
-                            85<span class="stat-plus">+</span>
-                        </div>
+                        <div class="stat-circle-number">85<span class="stat-plus">+</span></div>
                     </div>
                     <span class="stat-circle-label">Active Grants</span>
                 </div>
-
                 <div class="stat-circle-item reveal" data-anim="up" data-delay="300">
                     <div class="stat-circle-ring">
                         <svg viewBox="0 0 140 140">
                             <circle class="ring-bg" cx="70" cy="70" r="60"/>
                             <circle class="ring-fg" cx="70" cy="70" r="60"/>
                         </svg>
-                        <div class="stat-circle-number">
-                            200<span class="stat-plus">+</span>
-                        </div>
+                        <div class="stat-circle-number">200<span class="stat-plus">+</span></div>
                     </div>
                     <span class="stat-circle-label">Research Scientists</span>
                 </div>
@@ -416,14 +405,10 @@
             <div class="about-collage reveal" data-anim="left">
                 <div class="collage-ring"></div>
                 <div class="collage-frame collage-main">
-                    <img src="index5re.webp"
-                         alt="Researchers collaborating in the Stackly laboratory"
-                         onerror="this.src='https://placehold.co/620x740/0f6b6b/ffffff?text=Research+Lab'" />
+                    <img src="index5re.webp" alt="Researchers collaborating" onerror="this.src='https://placehold.co/620x740/0f6b6b/ffffff?text=Research+Lab'" />
                 </div>
                 <div class="collage-frame collage-accent">
-                    <img src="index6re.webp"
-                         alt="Precision lab instrumentation"
-                         onerror="this.src='https://placehold.co/360x360/0f6b6b/ffffff?text=Lab+Equipment'" />
+                    <img src="index6re.webp" alt="Lab instrumentation" onerror="this.src='https://placehold.co/360x360/0f6b6b/ffffff?text=Lab+Equipment'" />
                 </div>
                 <div class="collage-badge">
                     <strong>15+</strong>
@@ -473,35 +458,19 @@
                 <h2>Transforming Science Across <span>Disciplines</span></h2>
                 <p>From quantum computing to synthetic biology — our research spans the spectrum of modern science. Select a domain to explore.</p>
             </div>
-
             <div class="research-interactive reveal" data-anim="up">
                 <div class="research-tabs" role="tablist" id="researchTabs">
-                    <button class="research-tab active" data-domain="health" role="tab" aria-selected="true">
-                        <span class="rt-index">01</span><span class="rt-icon">🧬</span><span class="rt-name">Healthcare</span>
-                    </button>
-                    <button class="research-tab" data-domain="space" role="tab" aria-selected="false">
-                        <span class="rt-index">02</span><span class="rt-icon">🚀</span><span class="rt-name">Space</span>
-                    </button>
-                    <button class="research-tab" data-domain="environment" role="tab" aria-selected="false">
-                        <span class="rt-index">03</span><span class="rt-icon">🌍</span><span class="rt-name">Environment</span>
-                    </button>
-                    <button class="research-tab" data-domain="energy" role="tab" aria-selected="false">
-                        <span class="rt-index">04</span><span class="rt-icon">⚡</span><span class="rt-name">Energy</span>
-                    </button>
-                    <button class="research-tab" data-domain="biotech" role="tab" aria-selected="false">
-                        <span class="rt-index">05</span><span class="rt-icon">🧫</span><span class="rt-name">Biotech</span>
-                    </button>
-                    <button class="research-tab" data-domain="robotics" role="tab" aria-selected="false">
-                        <span class="rt-index">06</span><span class="rt-icon">🤖</span><span class="rt-name">Robotics</span>
-                    </button>
-                    <button class="research-tab" data-domain="ai" role="tab" aria-selected="false">
-                        <span class="rt-index">07</span><span class="rt-icon">🧠</span><span class="rt-name">AI</span>
-                    </button>
+                    <button class="research-tab active" data-domain="health" role="tab" aria-selected="true"><span class="rt-index">01</span><span class="rt-icon">🧬</span><span class="rt-name">Healthcare</span></button>
+                    <button class="research-tab" data-domain="space" role="tab" aria-selected="false"><span class="rt-index">02</span><span class="rt-icon">🚀</span><span class="rt-name">Space</span></button>
+                    <button class="research-tab" data-domain="environment" role="tab" aria-selected="false"><span class="rt-index">03</span><span class="rt-icon">🌍</span><span class="rt-name">Environment</span></button>
+                    <button class="research-tab" data-domain="energy" role="tab" aria-selected="false"><span class="rt-index">04</span><span class="rt-icon">⚡</span><span class="rt-name">Energy</span></button>
+                    <button class="research-tab" data-domain="biotech" role="tab" aria-selected="false"><span class="rt-index">05</span><span class="rt-icon">🧫</span><span class="rt-name">Biotech</span></button>
+                    <button class="research-tab" data-domain="robotics" role="tab" aria-selected="false"><span class="rt-index">06</span><span class="rt-icon">🤖</span><span class="rt-name">Robotics</span></button>
+                    <button class="research-tab" data-domain="ai" role="tab" aria-selected="false"><span class="rt-index">07</span><span class="rt-icon">🧠</span><span class="rt-name">AI</span></button>
                 </div>
-
                 <div class="research-panels" id="researchPanels">
                     <div class="research-panel active" data-domain="health">
-                        <div class="panel-media"><img src="index7re.webp" alt="Genomics research" /></div>
+                        <div class="panel-media"><img src="index7re.webp" alt="Genomics" /></div>
                         <div class="panel-content">
                             <h3>Healthcare Research</h3>
                             <ul>
@@ -512,68 +481,68 @@
                         </div>
                     </div>
                     <div class="research-panel" data-domain="space">
-                        <div class="panel-media"><img src="index8re.webp"Space research" /></div>
+                        <div class="panel-media"><img src="index8re.webp" alt="Space" /></div>
                         <div class="panel-content">
                             <h3>Space Research</h3>
                             <ul>
-                                <li><strong>Exoplanet Discovery</strong> — High-contrast spectroscopy for biosignature detection.<span class="research-sub">JWST Cycle-3 program</span></li>
-                                <li><strong>Rocket Propulsion Systems</strong> — Nuclear thermal &amp; electric propulsion for deep-space.<span class="research-sub">NASA collaboration</span></li>
-                                <li><strong>Deep Space Communication</strong> — Laser-based protocols for high-bandwidth transmission.<span class="research-sub">ESA partnership</span></li>
+                                <li><strong>Exoplanet Discovery</strong> — High-contrast spectroscopy for biosignature detection.<span class="research-sub">JWST Cycle-3</span></li>
+                                <li><strong>Rocket Propulsion Systems</strong> — Nuclear thermal &amp; electric propulsion.<span class="research-sub">NASA collaboration</span></li>
+                                <li><strong>Deep Space Communication</strong> — Laser-based protocols.<span class="research-sub">ESA partnership</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="research-panel" data-domain="environment">
-                        <div class="panel-media"><img src="index9re.webp" alt="Environmental research" /></div>
+                        <div class="panel-media"><img src="index9re.webp" alt="Environment" /></div>
                         <div class="panel-content">
                             <h3>Environmental Science</h3>
                             <ul>
-                                <li><strong>Carbon Capture Technology</strong> — Direct air capture + geological sequestration.<span class="research-sub">Pilot plant in Iceland</span></li>
-                                <li><strong>Flood Prediction Systems</strong> — Geospatial AI models for real-time hydrological forecasts.<span class="research-sub">NOAA-funded</span></li>
-                                <li><strong>Waste Recycling Innovation</strong> — Enzymatic depolymerization of mixed plastics.<span class="research-sub">Circular economy initiative</span></li>
+                                <li><strong>Carbon Capture</strong> — Direct air capture + geological sequestration.<span class="research-sub">Pilot in Iceland</span></li>
+                                <li><strong>Flood Prediction</strong> — Geospatial AI for real-time forecasts.<span class="research-sub">NOAA-funded</span></li>
+                                <li><strong>Waste Recycling</strong> — Enzymatic depolymerization of plastics.<span class="research-sub">Circular economy</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="research-panel" data-domain="energy">
-                        <div class="panel-media"><img src="index10re.webp" alt="Energy research" /></div>
+                        <div class="panel-media"><img src="index10re.webp" alt="Energy" /></div>
                         <div class="panel-content">
                             <h3>Renewable Energy</h3>
                             <ul>
-                                <li><strong>Hydrogen Fuel Technology</strong> — Electrolyzer optimization for green hydrogen.<span class="research-sub">DOE H2Scale program</span></li>
-                                <li><strong>Smart Grid Systems</strong> — AI-driven demand-side management for decentralized integration.<span class="research-sub">Grid innovation lab</span></li>
-                                <li><strong>EV Battery Research</strong> — Solid-state Li-S architectures, 500+ Wh/kg.<span class="research-sub">Tesla partnership</span></li>
+                                <li><strong>Hydrogen Fuel</strong> — Electrolyzer optimization for green hydrogen.<span class="research-sub">DOE H2Scale</span></li>
+                                <li><strong>Smart Grid</strong> — AI-driven demand-side management.<span class="research-sub">Grid innovation lab</span></li>
+                                <li><strong>EV Batteries</strong> — Solid-state Li-S, 500+ Wh/kg.<span class="research-sub">Tesla partnership</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="research-panel" data-domain="biotech">
-                        <div class="panel-media"><img src="index12re.webp" alt="Biotechnology research" /></div>
+                        <div class="panel-media"><img src="index12re.webp" alt="Biotech" /></div>
                         <div class="panel-content">
                             <h3>Biotechnology</h3>
                             <ul>
-                                <li><strong>Synthetic Biology</strong> — Engineered microbial chassis for sustainable biochemicals.<span class="research-sub">DARPA-funded</span></li>
-                                <li><strong>Tissue Engineering</strong> — 3D bioprinted vascularized scaffolds for organ regeneration.<span class="research-sub">Stanford collaboration</span></li>
-                                <li><strong>Disease-Resistant Crops</strong> — CRISPR-Cas9 trait stacking for climate-resilient agriculture.<span class="research-sub">Food security initiative</span></li>
+                                <li><strong>Synthetic Biology</strong> — Engineered microbial chassis.<span class="research-sub">DARPA-funded</span></li>
+                                <li><strong>Tissue Engineering</strong> — 3D bioprinted vascularized scaffolds.<span class="research-sub">Stanford collaboration</span></li>
+                                <li><strong>Disease-Resistant Crops</strong> — CRISPR-Cas9 trait stacking.<span class="research-sub">Food security</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="research-panel" data-domain="robotics">
-                        <div class="panel-media"><img src="index11re.webp" alt="Robotics research" /></div>
+                        <div class="panel-media"><img src="index11re.webp" alt="Robotics" /></div>
                         <div class="panel-content">
                             <h3>Robotics</h3>
                             <ul>
-                                <li><strong>Humanoid Robots</strong> — Bio-inspired perception &amp; dexterity for dynamic environments.<span class="research-sub">Boston Dynamics collaboration</span></li>
-                                <li><strong>Surgical Robots</strong> — Haptic-feedback platforms, sub-mm precision.<span class="research-sub">FDA breakthrough device</span></li>
-                                <li><strong>Disaster Response Robots</strong> — Ruggedized autonomous rovers for search-and-rescue.<span class="research-sub">DARPA SubT challenge</span></li>
+                                <li><strong>Humanoid Robots</strong> — Bio-inspired perception &amp; dexterity.<span class="research-sub">Boston Dynamics</span></li>
+                                <li><strong>Surgical Robots</strong> — Haptic-feedback platforms.<span class="research-sub">FDA breakthrough</span></li>
+                                <li><strong>Disaster Robots</strong> — Ruggedized autonomous rovers.<span class="research-sub">DARPA SubT</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="research-panel" data-domain="ai">
-                        <div class="panel-media"><img src="index13re.webp" alt="Artificial intelligence research" /></div>
+                        <div class="panel-media"><img src="index13re.webp" alt="AI" /></div>
                         <div class="panel-content">
                             <h3>Artificial Intelligence</h3>
                             <ul>
-                                <li><strong>AI-Based Disease Detection</strong> — Deep learning models for early oncology biomarker identification.<span class="research-sub">Nature Medicine 2025</span></li>
-                                <li><strong>Computer Vision</strong> — High-resolution imaging analysis for scientific discovery.<span class="research-sub">CVPR 2025</span></li>
-                                <li><strong>Predictive Analytics</strong> — Foundation models for scientific hypothesis generation.<span class="research-sub">Nature Machine Intelligence</span></li>
+                                <li><strong>AI Disease Detection</strong> — Deep learning for oncology biomarkers.<span class="research-sub">Nature Medicine 2025</span></li>
+                                <li><strong>Computer Vision</strong> — High-resolution imaging.<span class="research-sub">CVPR 2025</span></li>
+                                <li><strong>Predictive Analytics</strong> — Foundation models for hypothesis generation.<span class="research-sub">Nature Machine Intelligence</span></li>
                             </ul>
                         </div>
                     </div>
@@ -590,39 +559,34 @@
                 <h2>The Scientific Method, <span>Scaled</span></h2>
                 <p>Every Stackly project moves through the same four disciplined stages — from first question to published, applicable result.</p>
             </div>
-
             <div class="timeline-track" id="timelineTrack">
                 <div class="timeline-line"><div class="timeline-fill" id="timelineFill"></div></div>
-
                 <div class="timeline-step reveal" data-anim="left" data-side="left">
-                    <div class="timeline-media"><img src="index14re.webp" alt="Researchers framing a hypothesis" /></div>
+                    <div class="timeline-media"><img src="index14re.webp" alt="Hypothesize" /></div>
                     <div class="timeline-content">
                         <div class="timeline-marker">01</div>
                         <h3>Hypothesize</h3>
                         <p>Cross-disciplinary teams frame testable questions from literature gaps, field data, and clinical need — vetted by an internal review board before funding is allocated.</p>
                     </div>
                 </div>
-
                 <div class="timeline-step reveal" data-anim="right" data-side="right">
-                    <div class="timeline-media"><img src="index15re.webp" alt="Scientists running lab experiments" /></div>
+                    <div class="timeline-media"><img src="index15re.webp" alt="Experiment" /></div>
                     <div class="timeline-content">
                         <div class="timeline-marker">02</div>
                         <h3>Experiment</h3>
                         <p>Controlled trials run across our 42 labs, with shared protocols and instrumentation so results stay reproducible across every site, every time.</p>
                     </div>
                 </div>
-
                 <div class="timeline-step reveal" data-anim="left" data-side="left">
-                    <div class="timeline-media"><img src="index16re.webp" alt="Data analysis and modeling" /></div>
+                    <div class="timeline-media"><img src="index16re.webp" alt="Analyze" /></div>
                     <div class="timeline-content">
                         <div class="timeline-marker">03</div>
                         <h3>Analyze</h3>
                         <p>Statisticians and ML researchers stress-test every result against bias and noise, modeling outcomes before a single claim is drafted for review.</p>
                     </div>
                 </div>
-
                 <div class="timeline-step reveal" data-anim="right" data-side="right">
-                    <div class="timeline-media"><img src="index17re.webp" alt="Publishing and applying findings globally" /></div>
+                    <div class="timeline-media"><img src="index17re.webp" alt="Publish" /></div>
                     <div class="timeline-content">
                         <div class="timeline-marker">04</div>
                         <h3>Publish &amp; Apply</h3>
@@ -639,7 +603,7 @@
             <div class="section-header reveal" data-anim="up">
                 <span class="eyebrow">Ongoing Research</span>
                 <h2>Flagship <span>Projects</span></h2>
-                <p>Six active programs currently moving from the lab bench toward real-world deployment.</p>
+                <p>Six active programs currently moving from the lab bench toward real-world deployment. <strong>Click any card</strong> to explore the full case study.</p>
             </div>
 
             <div class="proj-feature reveal" data-anim="up" id="featuredProject">
@@ -754,75 +718,54 @@
                 <h2>Inside Our <span>Labs</span></h2>
                 <p>A glimpse into the facilities, instruments, and people behind every Stackly publication.</p>
             </div>
-
             <div class="labs-directory">
                 <div class="lab-list reveal" data-anim="left">
                     <div class="lab-list-item">
                         <span class="lab-list-icon">🧬</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>Genomics Wing</h4>
-                                <span class="lab-list-loc">Building C · Floor 3</span>
-                            </div>
+                            <div class="lab-list-top"><h4>Genomics Wing</h4><span class="lab-list-loc">Building C · Floor 3</span></div>
                             <p>Sequencing &amp; CRISPR editing suites running 24/7 across 6 dedicated benches.</p>
                         </div>
                     </div>
                     <div class="lab-list-item">
                         <span class="lab-list-icon">⚗️</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>Instrumentation Bay</h4>
-                                <span class="lab-list-loc">Building A · Floor 1</span>
-                            </div>
+                            <div class="lab-list-top"><h4>Instrumentation Bay</h4><span class="lab-list-loc">Building A · Floor 1</span></div>
                             <p>Mass spectrometry, NMR, and cryo-EM shared across all research domains.</p>
                         </div>
                     </div>
                     <div class="lab-list-item">
                         <span class="lab-list-icon">🔬</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>Sequencing Core</h4>
-                                <span class="lab-list-loc">Building C · Floor 2</span>
-                            </div>
+                            <div class="lab-list-top"><h4>Sequencing Core</h4><span class="lab-list-loc">Building C · Floor 2</span></div>
                             <p>High-throughput Illumina &amp; Nanopore pipelines processing 400+ samples weekly.</p>
                         </div>
                     </div>
                     <div class="lab-list-item">
                         <span class="lab-list-icon">🤖</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>Robotics Testbed</h4>
-                                <span class="lab-list-loc">Building D · Floor 1</span>
-                            </div>
+                            <div class="lab-list-top"><h4>Robotics Testbed</h4><span class="lab-list-loc">Building D · Floor 1</span></div>
                             <p>Open-floor arena for swarm coordination and autonomous navigation trials.</p>
                         </div>
                     </div>
                     <div class="lab-list-item">
                         <span class="lab-list-icon">⚙️</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>Fabrication Lab</h4>
-                                <span class="lab-list-loc">Building D · Floor 2</span>
-                            </div>
+                            <div class="lab-list-top"><h4>Fabrication Lab</h4><span class="lab-list-loc">Building D · Floor 2</span></div>
                             <p>CNC, 3D printing, and clean-room assembly for hardware prototyping.</p>
                         </div>
                     </div>
                     <div class="lab-list-item">
                         <span class="lab-list-icon">🧠</span>
                         <div class="lab-list-text">
-                            <div class="lab-list-top">
-                                <h4>AI &amp; Cognition Lab</h4>
-                                <span class="lab-list-loc">Building B · Floor 4</span>
-                            </div>
+                            <div class="lab-list-top"><h4>AI &amp; Cognition Lab</h4><span class="lab-list-loc">Building B · Floor 4</span></div>
                             <p>GPU cluster and behavioral research space for model training and HCI studies.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="lab-side reveal" data-anim="right">
                     <div class="lab-side-photo">
-                        <img src="index25re.webp"
-                             alt="Genomics Wing, Building C" />
+                        <img src="index25re.webp" alt="Genomics Wing" />
                         <span class="lab-side-tag">🧬 Genomics Wing, Building C</span>
                     </div>
                     <div class="lab-side-stat">
@@ -839,7 +782,7 @@
         </div>
     </section>
 
-    <!-- ─── BREAKTHROUGHS – INNOVATIVE ─── -->
+    <!-- ─── BREAKTHROUGHS ─── -->
     <section class="section section-light" id="breakthroughs">
         <div class="container">
             <div class="section-header reveal" data-anim="up">
@@ -847,11 +790,10 @@
                 <h2>Latest <span>Breakthroughs</span></h2>
                 <p>Fresh from the lab – peer‑reviewed findings that are shaping the future of science.</p>
             </div>
-
             <div class="breakthroughs-innovative reveal" data-anim="up">
                 <div class="breakthrough-feature">
                     <div class="bt-img-wrap">
-                        <img src="blogresearch2.webp" alt="CRISPR prime editing breakthrough" />
+                        <img src="blogresearch2.webp" alt="CRISPR prime editing" />
                         <div class="bt-img-overlay">
                             <span class="bt-tag">Genomics</span>
                             <div class="bt-meta">Nature Biotech · 2026</div>
@@ -861,33 +803,19 @@
                         <h3>CRISPR‑Prime Editing Reaches 99.1% On‑Target Accuracy</h3>
                         <p>A refined prime‑editing protocol that sharply cuts off‑target effects across five cell lines, paving the way for safer gene therapies.</p>
                         <div class="bt-stats-row">
-                            <div class="bt-stat">
-                                <strong>214</strong>
-                                <span>Citations</span>
-                            </div>
-                            <div class="bt-stat">
-                                <strong>5</strong>
-                                <span>Cell lines</span>
-                            </div>
-
-                            <div class="bt-stat">
-                                <strong>99.1%</strong>
-                                <span>Accuracy</span>
-                            </div>
+                            <div class="bt-stat"><strong>214</strong><span>Citations</span></div>
+                            <div class="bt-stat"><strong>5</strong><span>Cell lines</span></div>
+                            <div class="bt-stat"><strong>99.1%</strong><span>Accuracy</span></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="breakthrough-list">
                     <div class="bt-list-item">
                         <span class="bt-list-icon">🌍</span>
                         <div class="bt-list-content">
                             <div class="bt-list-title">Ocean carbon sink saturating 40% faster than IPCC models</div>
                             <div class="bt-list-desc">Buoy‑network data reveals Southern Ocean uptake slowdown.</div>
-                            <div class="bt-list-meta">
-                                <span>Science · 2025</span>
-                                <span class="bt-cites">301 cites</span>
-                            </div>
+                            <div class="bt-list-meta"><span>Science · 2025</span><span class="bt-cites">301 cites</span></div>
                         </div>
                         <span class="bt-list-arrow">→</span>
                     </div>
@@ -896,10 +824,7 @@
                         <div class="bt-list-content">
                             <div class="bt-list-title">Solid‑state lithium‑sulfur cells reach 500 Wh/kg</div>
                             <div class="bt-list-desc">A new electrolyte interface doubles EV range without sacrificing cycle life.</div>
-                            <div class="bt-list-meta">
-                                <span>Joule · 2025</span>
-                                <span class="bt-cites">156 cites</span>
-                            </div>
+                            <div class="bt-list-meta"><span>Joule · 2025</span><span class="bt-cites">156 cites</span></div>
                         </div>
                         <span class="bt-list-arrow">→</span>
                     </div>
@@ -908,10 +833,7 @@
                         <div class="bt-list-content">
                             <div class="bt-list-title">Foundation models as co‑investigators: a lab trial</div>
                             <div class="bt-list-desc">Six‑month study measuring how LLM‑suggested hypotheses changed experiment design.</div>
-                            <div class="bt-list-meta">
-                                <span>Nature Methods · 2026</span>
-                                <span class="bt-cites">62 cites</span>
-                            </div>
+                            <div class="bt-list-meta"><span>Nature Methods · 2026</span><span class="bt-cites">62 cites</span></div>
                         </div>
                         <span class="bt-list-arrow">→</span>
                     </div>
@@ -920,10 +842,7 @@
                         <div class="bt-list-content">
                             <div class="bt-list-title">Biosignature candidate detected via JWST NIRSpec on K2‑18b</div>
                             <div class="bt-list-desc">Atmospheric chemistry consistent with biological processes, pending confirmation.</div>
-                            <div class="bt-list-meta">
-                                <span>Astrophysical J. · 2026</span>
-                                <span class="bt-cites">87 cites</span>
-                            </div>
+                            <div class="bt-list-meta"><span>Astrophysical J. · 2026</span><span class="bt-cites">87 cites</span></div>
                         </div>
                         <span class="bt-list-arrow">→</span>
                     </div>
@@ -940,7 +859,6 @@
                 <h2>Trusted by Leading <span>Institutions</span></h2>
                 <p>From federal agencies to Ivy League research labs, our findings power decisions at the organizations shaping science today.</p>
             </div>
-
             <div class="partner-marquee-wrap reveal" data-anim="up">
                 <div class="partner-marquee">
                     <div class="partner-track">
@@ -957,12 +875,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="testi-intro reveal" data-anim="up">
                 <h3>What our partners say</h3>
                 <p>Direct feedback from the researchers and institutions we collaborate with.</p>
             </div>
-
             <div class="testi-marquee-wrap reveal" data-anim="up">
                 <div class="testi-marquee">
                     <div class="testi-track">
@@ -971,10 +887,7 @@
                             <p>Stackly's AI-driven drug discovery platform accelerated our clinical trial timeline by 40%. Their interdisciplinary approach is unmatched.</p>
                             <div class="testi-author">
                                 <img src="indexteam1.webp" alt="Dr. Sarah Jenkins" />
-                                <div>
-                                    <h4>Dr. Sarah Jenkins</h4>
-                                    <span>CTO, QuantumTech Solutions</span>
-                                </div>
+                                <div><h4>Dr. Sarah Jenkins</h4><span>CTO, QuantumTech Solutions</span></div>
                             </div>
                         </div>
                         <div class="testi-card">
@@ -982,10 +895,7 @@
                             <p>Their exoplanet spectroscopy data from JWST has fundamentally changed our understanding of atmospheric chemistry in M-dwarf systems.</p>
                             <div class="testi-author">
                                 <img src="indexteam2.webp" alt="Prof. James O'Donnell" />
-                                <div>
-                                    <h4>Prof. James O'Donnell</h4>
-                                    <span>Astrophysics, UC Berkeley</span>
-                                </div>
+                                <div><h4>Prof. James O'Donnell</h4><span>Astrophysics, UC Berkeley</span></div>
                             </div>
                         </div>
                         <div class="testi-card">
@@ -993,16 +903,12 @@
                             <p>The spatial transcriptomics platform developed at Stackly has become a cornerstone of our cancer research program at Stanford.</p>
                             <div class="testi-author">
                                 <img src="indexteam3.webp" alt="Dr. Lisa Park" />
-                                <div>
-                                    <h4>Dr. Lisa Park</h4>
-                                    <span>Genomics Lead, Stanford Medicine</span>
-                                </div>
+                                <div><h4>Dr. Lisa Park</h4><span>Genomics Lead, Stanford Medicine</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="cta-banner reveal" data-anim="up">
                 <div class="cta-banner-grid" aria-hidden="true"></div>
                 <span class="cta-icon">⚛</span>
@@ -1016,14 +922,12 @@
     <!-- ─── FOOTER ─── -->
     <footer class="footer" id="footer">
         <div class="container">
-
             <div class="newsletter-pill-wrap">
                 <form class="newsletter-pill-form fade-in-up" action="404.html">
                     <input type="email" placeholder="Enter email address" required />
                     <button type="submit">SUBSCRIBE</button>
                 </form>
             </div>
-
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo-wrapper">
@@ -1033,7 +937,6 @@
                     <p class="footer-contact-info">📞 +1 (617) 555-0199</p>
                     <p class="footer-contact-info">📧 research@stackly.org</p>
                 </div>
-
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -1044,7 +947,6 @@
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Research Areas</h4>
                     <ul>
@@ -1056,7 +958,6 @@
                         <li><a href="research.html">Robotics &amp; AI</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Information</h4>
                     <ul>
@@ -1067,22 +968,21 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p class="copyright-text">© 2026 Stackly, All Rights Reserved, Created by Stackly™</p>
                 <div class="footer-bottom-right">
                     <div class="footer-bottom-socials">
                         <a href="404.html" class="social-icon" aria-label="Twitter/X">𝕏</a>
-                       <a href="404.html" class="social-icon" aria-label="Instagram">
+                        <a href="404.html" class="social-icon" aria-label="Instagram">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                         </a>
                         <a href="404.html" class="social-icon" aria-label="LinkedIn">in</a>
                         <a href="404.html" class="social-icon" aria-label="Facebook">f</a>
                     </div>
-                   <form class="search-box" action="404.html" method="get">
-    <input type="text" name="q" placeholder="Type here to search" required />
-    <button type="submit" aria-label="Search">🔍</button>
-</form>
+                    <form class="search-box" action="404.html" method="get">
+                        <input type="text" name="q" placeholder="Type here to search" required />
+                        <button type="submit" aria-label="Search">🔍</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1091,9 +991,7 @@
     <!-- Back to top -->
     <a href="#" class="back-to-top-circle" aria-label="Back to top">↑</a>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js">
-    </script>
-    <script src="home.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
