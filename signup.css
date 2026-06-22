@@ -64,10 +64,15 @@ body::before {
   box-shadow: var(--shadow-lg); transition: var(--tr); border-radius: 0;
 }
 
-.form-header { text-align: center; margin-bottom: 28px; }
+/* ─── FORM HEADER – logo pushed down (matches login.css) ─── */
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-top: 20px;
+}
 .logo-wrapper {
   display: inline-block;
-  background-color: #094a4a; /* Your dark teal */
+  background-color: #094a4a;
   -webkit-mask-image: url('logo-removebg-preview.webp');
   mask-image: url('logo-removebg-preview.webp');
   -webkit-mask-size: contain;
@@ -76,23 +81,26 @@ body::before {
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-  width: 140px;  /* Adjust to match your logo size */
-  height: 65px;  /* Adjust to match your logo height */
+  width: 180px;
+  height: 82px;
+  margin-top: 16px;
+  margin-bottom: 8px;
 }
 
 .nav-logo-mask {
   display: block;
   width: 100%;
   height: 100%;
-  opacity: 0;  /* Hides the original image, only the mask shows */
+  opacity: 0;
 }
 .form-header h2 {
   font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700;
   color: var(--white); margin-bottom: 6px;
+  margin-top: 4px;
 }
 .form-header p { color: rgba(255, 255, 255, 0.75); font-size: 0.9rem; }
 
-.form-fields { display: flex; flex-direction: column; gap: 18px; }
+.form-fields { display: flex; flex-direction: column; gap: 20px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field-group { display: flex; flex-direction: column; gap: 6px; }
 .field-group label { font-size: 0.85rem; font-weight: 500; color: rgba(255, 255, 255, 0.9); }
@@ -103,7 +111,7 @@ body::before {
   color: rgba(255, 255, 255, 0.6); pointer-events: none; z-index: 1;
 }
 .input-wrap input, .input-wrap select {
-  width: 100%; padding: 11px 40px 11px 38px;
+  width: 100%; padding: 12px 40px 12px 38px;
   background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.25);
   color: var(--white); font-family: 'Outfit', sans-serif; font-size: 0.9rem;
   transition: var(--tr); outline: none; border-radius: 0;
@@ -118,12 +126,54 @@ body::before {
   border-color: var(--color-primary); background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(15, 107, 107, 0.2);
 }
+
+/* ─── COMPREHENSIVE BROWSER DEFAULT PASSWORD REVEAL HIDE ─── */
+/* Chrome, Edge, Safari */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container,
+input[type="password"]::-webkit-search-decoration,
+input[type="password"]::-webkit-reveal {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+/* Firefox */
+input[type="password"]::-moz-reveal {
+  display: none !important;
+}
+/* IE/Edge (legacy) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+/* Fallback: ensure no extra space */
+input[type="password"] {
+  -webkit-text-security: disc;
+}
+
+/* ─── CUSTOM TOGGLE – only one eye remains ─── */
 .toggle-pw {
-  position: absolute; right: 10px; background: none; border: none;
-  cursor: pointer; color: rgba(255, 255, 255, 0.7); font-size: 1rem;
-  display: flex; align-items: center; transition: var(--tr); padding: 4px; border-radius: 0;
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--tr);
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  z-index: 2;
 }
 .toggle-pw:hover { color: var(--color-primary); }
+.toggle-pw i {
+  font-size: 1rem;
+  pointer-events: none;
+}
 
 .pw-strength { height: 4px; background: rgba(255, 255, 255, 0.2); margin-top: 8px; overflow: hidden; }
 .pw-bar { height: 100%; width: 0%; transition: width 0.3s; }
@@ -135,10 +185,11 @@ body::before {
 
 .btn-create {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 12px; border: none; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  padding: 14px; border: none; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: var(--white); font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600;
   cursor: pointer; transition: var(--tr); width: 100%; box-shadow: 0 4px 20px rgba(15, 107, 107, 0.4);
   position: relative; overflow: hidden; border-radius: 0;
+  margin-top: 4px;
 }
 .btn-create::before {
   content: ''; position: absolute; inset: 0;
@@ -148,16 +199,29 @@ body::before {
 .btn-create:hover::before { transform: translateX(100%); }
 .btn-create:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15, 107, 107, 0.5); }
 
-.login-prompt { text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; margin-top: 24px; }
+.login-prompt { text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; margin-top: 26px; }
 .login-link { color: var(--color-primary); font-weight: 600; text-decoration: none; }
 .login-link:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE – logo size matches index ─── */
+@media (max-width: 768px) {
+  .logo-wrapper {
+    width: 170px;
+    height: 78px;
+  }
+}
+@media (max-width: 480px) {
+  .logo-wrapper {
+    width: 150px;
+    height: 70px;
+  }
+}
 
 @media (max-width: 650px) {
   body { padding: 16px; justify-content: flex-start; }
   .back-btn { margin-bottom: 16px; padding: 8px 16px; font-size: 0.75rem; }
   .form-card { padding: 24px 16px; }
   .form-header h2 { font-size: 1.5rem; }
-  .nav-logo-img { max-height: 50px; }
   .field-row { grid-template-columns: 1fr; gap: 14px; }
   .input-wrap input, .input-wrap select { padding: 10px 36px 10px 34px; font-size: 0.85rem; }
 }
