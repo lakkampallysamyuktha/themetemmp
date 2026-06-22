@@ -233,6 +233,12 @@
             from { opacity: 0; transform: scale(0.97); }
             to { opacity: 1; transform: scale(1); }
         }
+
+        /* ─── REMOVE HAND CURSOR from project cards ─── */
+        .proj-card {
+            cursor: default; /* was 'pointer' – removes hand */
+        }
+        /* Keep all hover effects – they remain as defined in home.css */
     </style>
 </head>
 <body>
